@@ -1,6 +1,6 @@
 import type { JSX } from "react";
-import { TestPage1 } from "../TestPage1";
 import { TesPage2 } from "../TesPage2";
+import { LoginPage } from "../../features/auth/pages/LoginPage";
 
 type JSXComponent = () => JSX.Element;
 
@@ -14,11 +14,21 @@ export const authRoutes: Route[] = [
     {
         path: 'login',
         label: 'Login',
-        component: TestPage1
+        component: LoginPage
     },
     {
         path: 'forgot-password',
-        label: 'Olvide contraseña',
+        label: 'Olvide Contraseña',
+        component: TesPage2
+    },
+    {
+        path: 'send-code',
+        label: 'Enviar Código',
+        component: TesPage2
+    },
+    {
+        path: 'change-password',
+        label: 'Cambiar Contraseña',
         component: TesPage2
     }
 ]

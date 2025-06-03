@@ -1,0 +1,14 @@
+:root {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-size: 16px;
+  
+    color-scheme: light;
+    background-size: auto;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
