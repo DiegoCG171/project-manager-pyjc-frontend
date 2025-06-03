@@ -1,12 +1,35 @@
-import { BrowserRouter, Routes } from "react-router-dom"
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PublicGuard } from "../guards/PublicGuard";
+import { AuthRouter } from "./AuthRouter";
+import { PrivateGuard } from "../guards/PrivateGuard";
+import { MainRouter } from "./MainRouter";
 
 export const AppRouter = () => {
+
+  const user = {
+    id: '',
+    name: ''
+  }
+
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Routes>
-      
+        <Route path="/auth/*" element={
+          <PublicGuard isActive={user.id}>
+            <AuthRouter />
+          </PublicGuard>
+        } />
+        <Route path="/*" element={
+          <PrivateGuard isActive={user.id}>
+            <MainRouter />
+          </PrivateGuard>
+        } />
       </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
