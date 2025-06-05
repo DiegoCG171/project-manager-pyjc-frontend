@@ -13,7 +13,7 @@ type LoginFormData = {
 
 const validationSchema = Yup.object({
   user_email: Yup.string()
-    .email("Eso no es un correo")
+    .email("Debe ser un correo electrónico valido.")
     .required("El correo es requerido."),
   user_password: Yup.string().required("La contraseña es requerida."),
 });
@@ -35,7 +35,7 @@ export const LoginForm = () => {
         <FormikForm autoComplete="off">
           <div style={{ marginBottom: 24 }}>
             <label style={{ display: "block", marginBottom: 8, color: "#444" }}>
-              Correo Electronico
+              Correo electrónico
             </label>
             <Input
               name="user_email"
@@ -43,7 +43,7 @@ export const LoginForm = () => {
               value={values.user_email}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Correo electronico"
+              placeholder="Correo electrónico"
               autoComplete="new-email"
             />
             {touched.user_email && errors.user_email && (
@@ -74,7 +74,7 @@ export const LoginForm = () => {
           <Flex justify="end" align="center">
             <Text
               onClick={() => navigate("/auth/forgot-password")}
-              style={{ cursor: "pointer", color: "#444", userSelect: "none" }}
+              style={{ cursor: "pointer", color: "#005960", userSelect: "none" }}
             >
               ¿Olvidaste tu contraseña?
             </Text>

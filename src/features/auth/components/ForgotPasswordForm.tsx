@@ -9,7 +9,7 @@ type PasswordFormData = {
 
 const validationSchema = Yup.object({
   user_email: Yup.string()
-    .email("Eso no es un correo")
+    .email("Debe ser un correo electrónico valido.")
     .required("El correo electrónico es requerido."),
 });
 
@@ -29,7 +29,7 @@ export const ForgotPasswordForm = () => {
         <FormikForm autoComplete="off">
           <div style={{ marginBottom: 24 }}>
             <label style={{ display: "block", marginBottom: 8, color: "#444" }}>
-              Correo Electrónico
+              Correo electrónico
             </label>
             <Input
               name="user_email"

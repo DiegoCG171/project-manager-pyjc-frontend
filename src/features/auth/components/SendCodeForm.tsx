@@ -14,7 +14,7 @@ type FormValues = {
 const validationSchema = Yup.object({
   user_code: Yup.string()
     .length(OTP_LENGTH, "El código debe tener 6 dígitos.")
-    .required("El código es requerido."),
+    .required("El código de verificación es requerido."),
 });
 
 export const SendCodeForm: React.FC = () => {

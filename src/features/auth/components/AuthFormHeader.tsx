@@ -17,8 +17,8 @@ export const AuthFormHeader = ({
       direction="vertical"
       style={{ marginBottom: 16, textAlign: "center", width: "100%" }}
     >
-      <Title level={3}>{title}</Title>
-      <Text type="secondary">{subtitle}</Text>
+      <Title level={3} >{title}</Title>
+      <Text type="secondary" >{subtitle}</Text>
     </Space>
   );
 };
