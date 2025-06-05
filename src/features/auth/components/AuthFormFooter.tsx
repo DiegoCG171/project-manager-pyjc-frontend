@@ -11,7 +11,7 @@ interface Props {
 export const AuthFormFooter = ({
   question = "¿Ya tienes cuenta?",
   navigatePath = "auth/login",
-  navigateText = "Iniciar Sesión",
+  navigateText = "Inicia Sesión",
 }: Props) => {
   const navigate = useNavigate();
 

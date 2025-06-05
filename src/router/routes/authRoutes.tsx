@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 import { TesPage2 } from "../TesPage2";
+import { ForgotPassword } from "../../features/auth/pages/ForgotPasswordPage";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
 import { SendCodePage } from "../../features/auth/pages/SendCodePage";
 
@@ -20,7 +21,7 @@ export const authRoutes: Route[] = [
     {
         path: 'forgot-password',
         label: 'Olvide Contraseña',
-        component: TesPage2
+        component: ForgotPassword
     },
     {
         path: 'send-code',
