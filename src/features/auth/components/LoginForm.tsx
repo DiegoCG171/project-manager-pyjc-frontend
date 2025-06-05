@@ -3,6 +3,8 @@ import { Formik, Form as FormikForm } from "formik";
 import { TbLock, TbMail } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useAppDispatch } from "../../../store/hooks/reduxHooks";
+import { loginThunk } from "../../../store/auth/thunks/auth.thunk";
 
 const { Text } = Typography;
 
@@ -19,10 +21,11 @@ const validationSchema = Yup.object({
 });
 
 export const LoginForm = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
 
   const handleLogin = (values: LoginFormData) => {
-    console.log(values);
+    dispatch(loginThunk({email: values.user_email, password: values.user_password})) 
   };
 
   return (

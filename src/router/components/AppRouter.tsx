@@ -5,14 +5,11 @@ import { PrivateGuard } from "../guards/PrivateGuard";
 import { MainRouter } from "./MainRouter";
 import { VersionDisplay } from "../../shared/components/VersionDisplay";
 import { Logo } from "../../shared/components/Logo";
+import { useAppSelector } from "../../store/hooks/reduxHooks";
 
 export const AppRouter = () => {
-
-  const user = {
-    id: '',
-    name: ''
-  }
-
+  const { id } = useAppSelector(state => state.auth.user)
+  
   return (
     <BrowserRouter
       future={{
@@ -22,12 +19,12 @@ export const AppRouter = () => {
     >
       <Routes>
         <Route path="/auth/*" element={
-          <PublicGuard isActive={user.id}>
+          <PublicGuard isActive={id}>
             <AuthRouter />
           </PublicGuard>
         } />
         <Route path="/*" element={
-          <PrivateGuard isActive={user.id}>
+          <PrivateGuard isActive={id}>
             <MainRouter />
           </PrivateGuard>
         } />
