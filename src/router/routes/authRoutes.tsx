@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 import { TesPage2 } from "../TesPage2";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
+import { SendCodePage } from "../../features/auth/pages/SendCodePage";
 
 type JSXComponent = () => JSX.Element;
 
@@ -24,7 +25,7 @@ export const authRoutes: Route[] = [
     {
         path: 'send-code',
         label: 'Enviar Código',
-        component: TesPage2
+        component: SendCodePage
     },
     {
         path: 'change-password',

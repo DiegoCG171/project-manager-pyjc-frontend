@@ -1,6 +1,5 @@
 import { Button, Flex, Form, Input, Typography } from "antd";
 import { Formik, Form as FormikForm } from "formik";
-import { useState } from "react";
 import { TbLock, TbMail } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -21,14 +20,9 @@ const validationSchema = Yup.object({
 
 export const LoginForm = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const handleLogin = (values: LoginFormData) => {
     console.log(values);
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 3000);
   };
 
   return (
@@ -86,7 +80,7 @@ export const LoginForm = () => {
             </Text>
           </Flex>
           <Form.Item style={{ marginTop: 32 }}>
-            <Button loading={loading} block type="primary" htmlType="submit">
+            <Button block type="primary" htmlType="submit">
               Iniciar Sesión
             </Button>
           </Form.Item>
