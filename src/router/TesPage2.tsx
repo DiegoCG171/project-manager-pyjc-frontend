@@ -1,6 +1,10 @@
+import { ChangePasswordForm } from "../features/auth/components/ChangePasswordForm"
 
 export const TesPage2 = () => {
   return (
-    <div>TesPage2</div>
+    <div>
+      <ChangePasswordForm />
+      </div>
+    
   )
 }

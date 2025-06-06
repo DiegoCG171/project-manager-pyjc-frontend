@@ -83,7 +83,7 @@ export const LoginForm = () => {
             </Text>
           </Flex>
           <Form.Item style={{ marginTop: 32 }}>
-            <Button block type="primary" htmlType="submit">
+            <Button loading block type="primary" htmlType="submit">
               Iniciar Sesión
             </Button>
           </Form.Item>
