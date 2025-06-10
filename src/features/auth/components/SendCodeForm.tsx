@@ -5,6 +5,10 @@ import type { InputRef } from "antd";
 import type { FormikHelpers } from "formik";
 import * as Yup from "yup";
 
+import { useAppDispatch } from "../../../store/hooks/reduxHooks";
+import { sendCodeThunk } from "../../../store/auth/thunks/sendcode.thunk";
+
+
 const OTP_LENGTH = 6;
 
 type FormValues = {
@@ -54,9 +58,13 @@ export const SendCodeForm: React.FC = () => {
       inputsRef.current[index - 1]?.focus();
     }
   };
+  
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: FormValues) => {
     console.log(values);
+
+    dispatch(sendCodeThunk({code: values.user_code}))
   };
 
   return (

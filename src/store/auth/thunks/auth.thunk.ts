@@ -8,9 +8,7 @@ interface LoginCredential {
 export const loginThunk = createAsyncThunk(
     "auth/login",
     async (loginCredential: LoginCredential) => {
-
         
-
         return {
             id: '1',
             full_name: 'Diego CG',

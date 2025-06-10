@@ -3,6 +3,10 @@ import { Formik, Form as FormikForm } from "formik";
 import { TbMail } from "react-icons/tb";
 import * as Yup from "yup";
 
+
+import { useAppDispatch } from "../../../store/hooks/reduxHooks";
+import { passwordThunk } from "../../../store/auth/thunks/forgotPassword.thunk";
+
 type PasswordFormData = {
   user_email: string;
 };
@@ -14,9 +18,12 @@ const validationSchema = Yup.object({
 });
 
 export const ForgotPasswordForm = () => {
+  const dispatch = useAppDispatch();
 
   const handleLogin = (values: PasswordFormData) => {
     console.log(values);
+
+    dispatch(passwordThunk({email: values.user_email}))
   };
 
   return (
