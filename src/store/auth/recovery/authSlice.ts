@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { authInitialState } from './auth.state';
-import { loginThunk } from './thunks/auth.thunk';
+import { authInitialState } from '../auth.state';
+import { loginThunk } from '../thunks/auth.thunk';
 
 export const cambiarContraseña = createAsyncThunk(
   'auth/cambiarContraseña',

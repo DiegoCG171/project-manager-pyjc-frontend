@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice } from "./auth/authSlice";
+import { authSlice } from "./auth/recovery/authSlice";
 import { uiSlice } from "./ui/uiSlice";
-import { forgotPasswordSlice } from "./auth/forgotPasswordSlice";
+import { recoveryPasswordSlice } from "./auth/recovery/recoveryPasswordSlice";
 
 
 
@@ -9,7 +9,7 @@ export const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
         ui: uiSlice.reducer,
-        forgotPassword: forgotPasswordSlice.reducer,
+        recovery: recoveryPasswordSlice.reducer,
     }
 });
 

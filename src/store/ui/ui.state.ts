@@ -7,11 +7,5 @@ export const uiInitialState: UIInitialState = {
       isChecking: false,
       isValidUser: false,
     },
-    recovery: {
-      step: "pending",
-      code: "",
-      email: "",
-      loading: false,
-    },
   },
 };
