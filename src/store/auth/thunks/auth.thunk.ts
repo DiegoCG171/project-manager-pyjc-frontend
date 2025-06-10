@@ -19,4 +19,17 @@ export const loginThunk = createAsyncThunk(
             role: ['user']
         }
     }
-)
+);
+
+export const cambiarContraseña = createAsyncThunk(
+  "auth/cambiarContraseña",
+  async (nuevaContraseña: string, { rejectWithValue }) => {
+    try {
+      console.log("Nueva contraseña:", nuevaContraseña);
+      // Aquí puedes simular una petición HTTP o lógica real si usas Firebase/backend.
+      return true;
+    } catch (error: any) {
+      return rejectWithValue("Error al cambiar la contraseña.");
+    }
+  }
+);
