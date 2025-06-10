@@ -13,7 +13,11 @@ export const AuthLayout = ({ children }: Props) => {
   const smallScreen = ["xs", "sm"].includes(breakpoint);
   return (
     <Row>
-      <Col span={12} className={styles.auth_layout_content}>
+      <Col
+        sm={{ span: 24 }}
+        md={{ span: 12 }}
+        className={styles.auth_layout_content}
+      >
         <Space
           direction="vertical"
           size={24}
@@ -22,19 +26,21 @@ export const AuthLayout = ({ children }: Props) => {
           {children}
         </Space>
       </Col>
-      <Col span={12} style={{ padding: 24 }}>
-        <Carousel
-          autoplay={true}
-          autoplaySpeed={5000}
-          className={styles.auth_layout_carousel}
-        >
-          {["1", "2", "3"].map((item) => (
-            <div>
-              <h3 className={styles.auth_layout_slider}>{item}</h3>
-            </div>
-          ))}
-        </Carousel>
-      </Col>
+      {!smallScreen && (
+        <Col sm={{ span: 24 }} md={{ span: 12 }} style={{ padding: 24 }}>
+          <Carousel
+            autoplay={true}
+            autoplaySpeed={5000}
+            className={styles.auth_layout_carousel}
+          >
+            {["1", "2", "3"].map((item) => (
+              <div>
+                <h3 className={styles.auth_layout_slider}>{item}</h3>
+              </div>
+            ))}
+          </Carousel>
+        </Col>
+      )}
     </Row>
   );
 };

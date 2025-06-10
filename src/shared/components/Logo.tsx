@@ -12,11 +12,11 @@ export const Logo = () => {
       src={LogoSVG}
       onClick={onNavigate}
       style={{
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: 0,
         padding: "24px 32px",
-        width: "5rem",
+        width: "4rem",
         cursor: "pointer",
       }}
     />

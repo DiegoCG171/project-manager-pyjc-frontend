@@ -1,5 +1,4 @@
 import { AuthFormHeader } from "../components/AuthFormHeader";
-import { AuthFormFooter } from "../components/AuthFormFooter";
 import { LoginForm } from "../components/LoginForm";
 
 export const LoginPage = () => {
@@ -10,7 +9,6 @@ export const LoginPage = () => {
         subtitle="Organiza, planifica y supervisa tus proyectos con eficiencia y colaboración."
       />
       <LoginForm />
-      <AuthFormFooter />
     </>
   );
 };
