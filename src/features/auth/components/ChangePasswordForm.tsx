@@ -2,9 +2,10 @@ import { Button, Form, Input } from "antd";
 import { Formik, Form as FormikForm } from "formik";
 import { TbLock } from "react-icons/tb";
 import * as Yup from "yup";
-import { useAppDispatch } from "../../../store/hooks/reduxHooks";
-import { cambiarContraseña } from "../../../store/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/reduxHooks";
+import { changepasswordThunk } from "../../../store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+
 
 type ChangePasswordFormData = {
   password: string;
@@ -14,7 +15,11 @@ type ChangePasswordFormData = {
 const validationSchema = Yup.object({
   password: Yup.string()
     .required("La nueva contraseña es requerida.")
-    .min(8, "La contraseña debe tener al menos 8 caracteres."),
+    .min(8, "La contraseña debe tener al menos 8 caracteres.")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/,
+      "La contraseña debe tener al menos 8 caracteres, incluyendo una letra minúscula, una mayúscula, un número y un carácter especial (ej. !@#$%^&*)."
+    ),
   confirm: Yup.string()
     .oneOf([Yup.ref("password")], "Las contraseñas no coinciden.")
     .required("La confirmación de contraseña es requerida."),
@@ -23,11 +28,14 @@ const validationSchema = Yup.object({
 export const ChangePasswordForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { loading } = useAppSelector(state => state.ui.authUI.status)
 
   const handleSubmit = async (values: ChangePasswordFormData) => {
     try {
-      await dispatch(cambiarContraseña(values.password)).unwrap();
+      await dispatch(changepasswordThunk(values.password)).unwrap();
+      setTimeout(() => {
       navigate("/auth/login");
+    }, 3000);
     } catch (error) {
       console.error("Error al cambiar la contraseña:", error);
     }
@@ -46,6 +54,7 @@ export const ChangePasswordForm = () => {
               Nueva contraseña
             </label>
             <Input.Password
+              disabled={loading}
               name="password"
               prefix={<TbLock color="#7c718f" />}
               value={values.password}
@@ -64,6 +73,7 @@ export const ChangePasswordForm = () => {
               Confirmar contraseña
             </label>
             <Input.Password
+              disabled={loading}
               name="confirm"
               prefix={<TbLock color="#7c718f" />}
               value={values.confirm}
@@ -78,7 +88,7 @@ export const ChangePasswordForm = () => {
           </div>
 
           <Form.Item style={{ marginTop: 32 }}>
-            <Button block type="primary" htmlType="submit">
+            <Button loading={loading} block type="primary" htmlType="submit">
               Cambiar contraseña
             </Button>
           </Form.Item>
