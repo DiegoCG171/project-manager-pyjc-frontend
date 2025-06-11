@@ -1,26 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { passwordThunk } from "../thunks/forgotPassword.thunk";
-import { sendCodeThunk } from "../thunks/sendcode.thunk";
-
-interface Recovery {
-  step: RecoveryStep;
-  loading: boolean;
-  email: string;
-  code: string;
-}
-
-const initialState: Recovery = {
-  step: "pending",
-  loading: true,
-  email: "",
-  code: "",
-};
-
-export type RecoveryStep = null | 'pending' | 'forgotPassword' | 'codeSent' | 'changePassword';
+import { passwordThunk } from "./thunks/forgotPassword.thunk";
+import { sendCodeThunk } from "./thunks/sendcode.thunk";
+import { recoveryInitialState } from "./recoveryPassword.state"
 
 export const recoveryPasswordSlice = createSlice({
   name: "forgotPassword",
-  initialState,
+  initialState : recoveryInitialState,
   reducers: {},
   extraReducers: (builder) => {
   builder

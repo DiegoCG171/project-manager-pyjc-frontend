@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { authInitialState } from '../auth.state';
-import { loginThunk } from '../thunks/auth.thunk';
+import { authInitialState } from './auth.state';
+import { loginThunk } from './thunks/auth.thunk';
 
 export const cambiarContraseña = createAsyncThunk(
   'auth/cambiarContraseña',
@@ -16,13 +16,13 @@ export const cambiarContraseña = createAsyncThunk(
 );
 
 export const authSlice = createSlice({
-   name: 'auth',
-   initialState: authInitialState,
-   reducers: {
-   },
-   extraReducers: (build) => {
+  name: 'auth',
+  initialState: authInitialState,
+  reducers: {
+  },
+  extraReducers: (build) => {
       build.addCase(loginThunk.fulfilled, (state, action) => {
-         state.user = action.payload
+        state.user = action.payload
       })
       .addCase(cambiarContraseña.pending, (state) => {
         state.loading = true;
@@ -35,5 +35,5 @@ export const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       });
-   }
+  }
 })

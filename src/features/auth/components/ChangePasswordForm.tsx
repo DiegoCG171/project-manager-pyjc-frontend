@@ -3,7 +3,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { TbLock } from "react-icons/tb";
 import * as Yup from "yup";
 import { useAppDispatch } from "../../../store/hooks/reduxHooks";
-import { cambiarContraseña } from "../../../store/auth/recovery/authSlice";
+import { cambiarContraseña } from "../../../store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 type ChangePasswordFormData = {

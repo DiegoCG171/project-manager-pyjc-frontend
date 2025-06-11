@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice } from "./auth/recovery/authSlice";
+import { authSlice } from "./auth/authSlice";
 import { uiSlice } from "./ui/uiSlice";
-import { recoveryPasswordSlice } from "./auth/recovery/recoveryPasswordSlice";
+import { recoveryPasswordSlice } from "./recovery/recoveryPasswordSlice";
 
 
 
