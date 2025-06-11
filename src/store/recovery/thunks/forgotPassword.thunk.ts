@@ -9,7 +9,6 @@ export const passwordThunk = createAsyncThunk(
     async (loginCredential: ForgotPasswordCredential) => {
         
         return {
-            id: '1',
             email: loginCredential.email,
         }
     }

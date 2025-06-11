@@ -4,7 +4,7 @@ export interface UIInitialState {
 
 export interface AuthUI {
     status: AuthStatus;
-    recovery: AuthRecovery
+    //recovery: AuthRecovery
 }
 
 export interface AuthStatus {
@@ -13,11 +13,12 @@ export interface AuthStatus {
     isValidUser: boolean;
 }
 
+/*
 export interface AuthRecovery {
     step: RecoveryStep;
     loading: boolean;
     email: string;
     code: string;
-}
+}*/
 
 export type RecoveryStep = null | 'pending' | 'forgotPassword' | 'codeSent' | 'changePassword';
