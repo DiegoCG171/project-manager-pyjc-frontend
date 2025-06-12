@@ -21,8 +21,19 @@ export const authSlice = createSlice({
   reducers: {
   },
   extraReducers: (build) => {
-    build.addCase(loginThunk.fulfilled, (state, action) => {
-      state.user = action.payload
-    })
+      build.addCase(loginThunk.fulfilled, (state, action) => {
+        state.user = action.payload
+      })
+      .addCase(cambiarContraseña.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(cambiarContraseña.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(cambiarContraseña.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   }
 })

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 
 import { useAppDispatch } from "../../../store/hooks/reduxHooks";
-import { passwordThunk } from "../../../store/auth/thunks/forgotPassword.thunk";
+import { passwordThunk } from "../../../store/recovery/thunks/forgotPassword.thunk";
 
 type PasswordFormData = {
   user_email: string;
