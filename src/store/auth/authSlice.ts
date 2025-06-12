@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { authInitialState } from './auth.state';
 import { loginThunk } from './thunks/auth.thunk';
 
-export const cambiarContraseña = createAsyncThunk(
-  'auth/cambiarContraseña',
-  async (nuevaContraseña: string, thunkAPI) => {
+export const changepasswordThunk = createAsyncThunk(
+  'auth/changepassword',
+  async (newpassword: string, thunkAPI) => {
     try {
-      console.log('Contraseña cambiada:', nuevaContraseña);
+      console.log('Contraseña cambiada:', newpassword);
       return true;
     } catch (error) {
       console.log(error)

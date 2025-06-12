@@ -10,8 +10,5 @@ export const authInitialState: AuthInitialState & {
     full_name: "",
     role: [],
     phone: "",
-  },
-  token: "",
-  loading: false,
-  error: null,
+  }
 };
