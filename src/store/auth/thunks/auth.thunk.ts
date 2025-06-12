@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 interface LoginCredential {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export const loginThunk = createAsyncThunk(
@@ -18,15 +18,16 @@ export const loginThunk = createAsyncThunk(
         }
     }
 );
-=
-export const cambiarContraseña = createAsyncThunk(
-  "auth/cambiarContraseña",
-  async (nuevaContraseña: string, { rejectWithValue }) => {
+
+export const changepasswordThunk = createAsyncThunk(
+  "auth/changepassword",
+  async (newpassword: string, { rejectWithValue }) => {
     try {
-      console.log("Nueva contraseña:", nuevaContraseña);
+      console.log("Nueva contraseña:", newpassword);
       return true;
-    } catch (error: any) {
+    } catch (error) {
+      console.log(error)
       return rejectWithValue("Error al cambiar la contraseña.");
     }
-  }
+    }
 );

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { uiInitialState } from "./ui.state";
-import { cambiarContraseña } from "../auth/authSlice";
-import { loginThunk } from "../auth/thunks/auth.thunk";
+import { changepasswordThunk, loginThunk } from "../auth/thunks/auth.thunk";
 
 export const uiSlice = createSlice({
   name: "ui",
@@ -18,14 +17,14 @@ export const uiSlice = createSlice({
       .addCase(loginThunk.rejected, (state) => {
         state.authUI.status.loading = false;
       })
-      .addCase(cambiarContraseña.pending, (state) => {
+      .addCase(changepasswordThunk.pending, (state) => {
         state.authUI.status.loading = true;
       })
-      .addCase(cambiarContraseña.fulfilled, (state) => {
+      .addCase(changepasswordThunk.fulfilled, (state) => {
+        state.authUI.status.loading = true;
+      })
+      .addCase(changepasswordThunk.rejected, (state) => {
         state.authUI.status.loading = false;
       })
-      .addCase(cambiarContraseña.rejected, (state) => {
-        state.authUI.status.loading = false;
-      });
   },
 });

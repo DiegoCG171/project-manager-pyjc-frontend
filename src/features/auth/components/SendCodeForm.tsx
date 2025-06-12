@@ -6,7 +6,7 @@ import type { FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 import { useAppDispatch } from "../../../store/hooks/reduxHooks";
-import { sendCodeThunk } from "../../../store/auth/thunks/sendcode.thunk";
+import { sendCodeThunk } from "../../../store/recovery/thunks/sendcode.thunk";
 
 
 const OTP_LENGTH = 6;
