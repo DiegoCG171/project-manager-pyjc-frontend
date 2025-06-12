@@ -2,7 +2,10 @@ import { Button, Form, Input } from "antd";
 import { Formik, Form as FormikForm } from "formik";
 import { TbLock } from "react-icons/tb";
 import * as Yup from "yup";
-import { useAppDispatch } from "../../../store/hooks/reduxHooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../store/hooks/reduxHooks";
 import { cambiarContraseña } from "../../../store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -23,6 +26,7 @@ const validationSchema = Yup.object({
 export const ChangePasswordForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { loading } = useAppSelector((state) => state.ui.authUI.status);
 
   const handleSubmit = async (values: ChangePasswordFormData) => {
     try {
@@ -46,6 +50,7 @@ export const ChangePasswordForm = () => {
               Nueva contraseña
             </label>
             <Input.Password
+              disabled={loading}
               name="password"
               prefix={<TbLock color="#7c718f" />}
               value={values.password}
@@ -55,7 +60,9 @@ export const ChangePasswordForm = () => {
               autoComplete="new-password"
             />
             {touched.password && errors.password && (
-              <div style={{ color: "#FF4D4F", marginTop: 8 }}>{errors.password}</div>
+              <div style={{ color: "#FF4D4F", marginTop: 8 }}>
+                {errors.password}
+              </div>
             )}
           </div>
 
@@ -64,6 +71,7 @@ export const ChangePasswordForm = () => {
               Confirmar contraseña
             </label>
             <Input.Password
+              disabled={loading}
               name="confirm"
               prefix={<TbLock color="#7c718f" />}
               value={values.confirm}
@@ -73,12 +81,14 @@ export const ChangePasswordForm = () => {
               autoComplete="new-password"
             />
             {touched.confirm && errors.confirm && (
-              <div style={{ color: "#FF4D4F", marginTop: 8 }}>{errors.confirm}</div>
+              <div style={{ color: "#FF4D4F", marginTop: 8 }}>
+                {errors.confirm}
+              </div>
             )}
           </div>
 
           <Form.Item style={{ marginTop: 32 }}>
-            <Button block type="primary" htmlType="submit">
+            <Button loading={loading} block type="primary" htmlType="submit">
               Cambiar contraseña
             </Button>
           </Form.Item>

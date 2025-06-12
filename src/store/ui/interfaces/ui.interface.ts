@@ -20,4 +20,4 @@ export interface AuthRecovery {
     code: string;
 }
 
-export type RecoveryStep = null | 'pending' | 'forgotPassword' | 'codeSent' | 'changePassword';
+export type RecoveryStep = null | 'pending' | 'forgotPassword' | 'codeSend' | 'changePassword';

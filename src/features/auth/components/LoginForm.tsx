@@ -3,7 +3,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { TbLock, TbMail } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useAppDispatch } from "../../../store/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/reduxHooks";
 import { loginThunk } from "../../../store/auth/thunks/auth.thunk";
 
 const { Text } = Typography;
@@ -23,6 +23,7 @@ const validationSchema = Yup.object({
 export const LoginForm = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate();
+  const {loading} = useAppSelector(state => state.ui.authUI.status)
 
   const handleLogin = (values: LoginFormData) => {
     dispatch(loginThunk({email: values.user_email, password: values.user_password})) 
@@ -48,6 +49,7 @@ export const LoginForm = () => {
               onBlur={handleBlur}
               placeholder="Correo electrónico"
               autoComplete="new-email"
+              disabled={loading}
             />
             {touched.user_email && errors.user_email && (
               <div style={{ color: "#FF4D4F", marginTop: 8 }}>
@@ -67,6 +69,7 @@ export const LoginForm = () => {
               onBlur={handleBlur}
               autoComplete="new-password"
               placeholder="Contraseña"
+              disabled={loading}
             />
             {touched.user_password && errors.user_password && (
               <div style={{ color: "#FF4D4F", marginTop: 8 }}>
@@ -83,7 +86,7 @@ export const LoginForm = () => {
             </Text>
           </Flex>
           <Form.Item style={{ marginTop: 32 }}>
-            <Button block type="primary" htmlType="submit">
+            <Button loading={loading} block type="primary" htmlType="submit">
               Iniciar Sesión
             </Button>
           </Form.Item>
