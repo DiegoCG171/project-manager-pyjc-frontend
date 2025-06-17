@@ -3,7 +3,7 @@ import type { ChangePasswordPayload, ChangePasswordResponse } from "../../interf
 import { handleAxiosError } from "../../shared/utils/axiosErrorHandler.util";
 import api from "../api/api.service";
 
-export const changePasswordService = async (payload: ChangePasswordPayload) => {
+export const changePasswordService = async (payload: ChangePasswordPayload): Promise<ChangePasswordResponse> => {
   try {
     const response = await api.post<ChangePasswordResponse>(ENDPOINTS.changePassword, payload);
     return response.data;

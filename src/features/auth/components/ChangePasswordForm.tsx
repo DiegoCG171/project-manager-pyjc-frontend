@@ -4,7 +4,7 @@ import { TbLock } from "react-icons/tb";
 import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
-import { changepasswordThunk } from "../../../store/auth/thunks/auth.thunk";
+import { changepasswordThunk } from "../../../store/recovery/thunks/ChangePassword.thunk"
 
 
 type ChangePasswordFormData = {
