@@ -19,6 +19,16 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      '@typescript-eslint/ban-types': [
+        'error',
+        {
+          extendDefaults: true,
+          types: {
+            '{}': false,
+          },
+        },
+      ],
+
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

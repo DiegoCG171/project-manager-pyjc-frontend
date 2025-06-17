@@ -5,9 +5,11 @@ import type { InputRef } from "antd";
 import type { FormikHelpers } from "formik";
 import * as Yup from "yup";
 
-import { useAppDispatch } from "../../../store/hooks/reduxHooks";
-import { sendCodeThunk } from "../../../store/recovery/thunks/sendcode.thunk";
-
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../store/hooks/reduxHooks";
+import { validateCodeThunk } from "../../../store/recovery/thunks/validateCode.thunk";
 
 const OTP_LENGTH = 6;
 
@@ -21,7 +23,7 @@ const validationSchema = Yup.object({
     .required("El código de verificación es requerido."),
 });
 
-export const SendCodeForm: React.FC = () => {
+export const SendCodeForm = () => {
   const inputsRef = useRef<Array<InputRef | null>>([]);
 
   const handleInputChange = (
@@ -58,13 +60,11 @@ export const SendCodeForm: React.FC = () => {
       inputsRef.current[index - 1]?.focus();
     }
   };
-  
+
   const dispatch = useAppDispatch();
-
+  const { loading } = useAppSelector((state) => state.ui.authUI.status);
   const handleSubmit = async (values: FormValues) => {
-    console.log(values);
-
-    dispatch(sendCodeThunk({code: values.user_code}))
+    dispatch(validateCodeThunk(values.user_code ));
   };
 
   return (
@@ -118,11 +118,7 @@ export const SendCodeForm: React.FC = () => {
           </div>
 
           <Form.Item style={{ marginTop: 32 }}>
-            <Button
-              block
-              type="primary"
-              htmlType="submit"
-            >
+            <Button block type="primary" htmlType="submit" loading={loading}>
               Verificar código
             </Button>
           </Form.Item>

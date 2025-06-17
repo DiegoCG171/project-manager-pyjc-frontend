@@ -4,11 +4,11 @@ import { AuthRouter } from "./AuthRouter";
 import { PrivateGuard } from "../guards/PrivateGuard";
 import { MainRouter } from "./MainRouter";
 import { VersionDisplay } from "../../shared/components/VersionDisplay";
-import { Logo } from "../../shared/components/Logo";
 import { useAppSelector } from "../../store/hooks/reduxHooks";
+import { Notifier } from "../../shared/components/Notifier";
 
 export const AppRouter = () => {
-  const { id } = useAppSelector(state => state.auth.user)
+  const { _id } = useAppSelector(state => state.auth.user)
   
   return (
     <BrowserRouter
@@ -19,17 +19,17 @@ export const AppRouter = () => {
     >
       <Routes>
         <Route path="/auth/*" element={
-          <PublicGuard isActive={id}>
+          <PublicGuard isActive={_id}>
             <AuthRouter />
           </PublicGuard>
         } />
         <Route path="/*" element={
-          <PrivateGuard isActive={id}>
+          <PrivateGuard isActive={_id}>
             <MainRouter />
           </PrivateGuard>
         } />
       </Routes>
-      <Logo />
+      <Notifier />
       <VersionDisplay />
     </BrowserRouter>
   );

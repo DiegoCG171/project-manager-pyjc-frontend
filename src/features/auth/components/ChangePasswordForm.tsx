@@ -3,8 +3,8 @@ import { Formik, Form as FormikForm } from "formik";
 import { TbLock } from "react-icons/tb";
 import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/reduxHooks";
-import { changepasswordThunk } from "../../../store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { changepasswordThunk } from "../../../store/auth/thunks/auth.thunk";
 
 
 type ChangePasswordFormData = {
@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
     .required("La nueva contraseña es requerida.")
     .min(8, "La contraseña debe tener al menos 8 caracteres.")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/,
       "La contraseña debe tener al menos 8 caracteres, incluyendo una letra minúscula, una mayúscula, un número y un carácter especial (ej. !@#$%^&*)."
     ),
   confirm: Yup.string()
@@ -64,7 +64,9 @@ export const ChangePasswordForm = () => {
               autoComplete="new-password"
             />
             {touched.password && errors.password && (
-              <div style={{ color: "#FF4D4F", marginTop: 8 }}>{errors.password}</div>
+              <div style={{ color: "#FF4D4F", marginTop: 8 }}>
+                {errors.password}
+              </div>
             )}
           </div>
 
@@ -83,7 +85,9 @@ export const ChangePasswordForm = () => {
               autoComplete="new-password"
             />
             {touched.confirm && errors.confirm && (
-              <div style={{ color: "#FF4D4F", marginTop: 8 }}>{errors.confirm}</div>
+              <div style={{ color: "#FF4D4F", marginTop: 8 }}>
+                {errors.confirm}
+              </div>
             )}
           </div>
 
