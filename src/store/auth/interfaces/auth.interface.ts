@@ -3,10 +3,10 @@ export interface AuthInitialState {
     token: string;
 }
 
-interface User {
-    id: string;
-    email: string;
+export interface User {
+    _id:       string;
+    email:     string;
     full_name: string;
-    role: string[];
-    phone: string;
+    rol:       string[];
+    phone:     string;
 }

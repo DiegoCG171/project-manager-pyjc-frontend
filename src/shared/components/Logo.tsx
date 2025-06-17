@@ -1,7 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import LogoSVG from "../../assets/logo_title.svg";
+import LogoTitleSVG from "../../assets/logo_title.svg";
+import LogoSVG from "../../assets/logo.svg";
 
-export const Logo = () => {
+interface Props {
+  size?: number;
+  variant?: "simple" | "withTitle";
+  isNavigated?: boolean;
+}
+
+export const Logo = ({size = 5, variant = "simple", isNavigated = false}: Props) => {
   const navigate = useNavigate();
   const onNavigate = () => {
     navigate("/dashboard");
@@ -9,15 +16,12 @@ export const Logo = () => {
 
   return (
     <img
-      src={LogoSVG}
-      onClick={onNavigate}
+      src={ variant === "simple" ? LogoSVG : LogoTitleSVG}
+      onClick={isNavigated ? onNavigate : undefined}
       style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
         padding: "24px 32px",
-        width: "4rem",
-        cursor: "pointer",
+        width: `${size}rem`,
+        cursor: isNavigated ? "pointer" : undefined,
       }}
     />
   );

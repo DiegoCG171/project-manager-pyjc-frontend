@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { passwordThunk } from "./thunks/forgotPassword.thunk";
-import { sendCodeThunk } from "./thunks/sendcode.thunk";
 import { recoveryInitialState } from "./recoveryPassword.state"
+import { forgotPasswordThunk } from "./thunks/forgotPassword.thunk";
+import { validateCodeThunk } from "./thunks/validateCode.thunk";
 
 export const recoveryPasswordSlice = createSlice({
   name: "forgotPassword",
@@ -9,20 +9,12 @@ export const recoveryPasswordSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
   builder
-    .addCase(passwordThunk.fulfilled, (state, action) => {
-      state.email = action.payload.email;
+    .addCase(forgotPasswordThunk.fulfilled, (state, action) => {
+      state.email = action.payload;
     })
-    .addCase(sendCodeThunk.pending, (state) => {
-      state.loading = true;
+    .addCase(validateCodeThunk.fulfilled, (state, action) => {
+      state.code = action.payload;
     })
-    .addCase(sendCodeThunk.fulfilled, (state, action) => {
-      state.loading = false;
-      state.step = 'codeSent';
-      state.code = action.payload.code;
-    })
-    .addCase(sendCodeThunk.rejected, (state) => {
-      state.loading = false;
-    });
 }
 
 });

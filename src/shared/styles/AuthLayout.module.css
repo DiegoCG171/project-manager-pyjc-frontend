@@ -6,17 +6,16 @@
 }
 
 .auth_layout_carousel {
-  height: calc(100vh - 48px);
-  border-radius: 8px;
+  height: 100vh;
   overflow: hidden;
 }
 
 .auth_layout_slider {
-  height: calc(100vh - 48px);
+  height: 100vh;
   color: #fff;
   line-height: 160px;
   text-align: center;
-  background: #515761;
+  background: #22A099;
   display: flex;
   justify-content: center;
   align-items: center;

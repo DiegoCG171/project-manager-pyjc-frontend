@@ -2,7 +2,7 @@ import type { ThemeConfig } from "antd";
 
 export const themeLight: ThemeConfig = {
         token: {
-          colorPrimary: "#04BDCE",
+          colorPrimary: "#06757E",
           colorTextBase: "#2c2c2c"
         }
         

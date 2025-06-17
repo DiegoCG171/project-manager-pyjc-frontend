@@ -4,8 +4,8 @@ import { TbMail } from "react-icons/tb";
 import * as Yup from "yup";
 
 
-import { useAppDispatch } from "../../../store/hooks/reduxHooks";
-import { passwordThunk } from "../../../store/recovery/thunks/forgotPassword.thunk";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/reduxHooks";
+import { forgotPasswordThunk } from "../../../store/recovery/thunks/forgotPassword.thunk";
 
 type PasswordFormData = {
   user_email: string;
@@ -19,11 +19,10 @@ const validationSchema = Yup.object({
 
 export const ForgotPasswordForm = () => {
   const dispatch = useAppDispatch();
+  const {loading} = useAppSelector(state => state.ui.authUI.status)
 
   const handleLogin = (values: PasswordFormData) => {
-    console.log(values);
-
-    dispatch(passwordThunk({email: values.user_email}))
+    dispatch(forgotPasswordThunk(values.user_email))
   };
 
   return (
@@ -54,7 +53,7 @@ export const ForgotPasswordForm = () => {
             )}
           </div>
           <Form.Item style={{ marginTop: 32 }}>
-            <Button block type="primary" htmlType="submit">
+            <Button loading={loading} block type="primary" htmlType="submit">
               Enviar código
             </Button>
           </Form.Item>

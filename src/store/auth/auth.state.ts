@@ -1,14 +1,12 @@
 import type { AuthInitialState } from "./interfaces/auth.interface";
 
-export const authInitialState: AuthInitialState & {
-  loading: boolean;
-  error: string | null;
-} = {
+export const authInitialState: AuthInitialState = {
   user: {
-    id: "",
+    _id: "",
     email: "",
     full_name: "",
-    role: [],
+    rol: [],
     phone: "",
-  }
+  },
+  token: ""
 };
