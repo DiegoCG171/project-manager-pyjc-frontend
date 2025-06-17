@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { uiInitialState } from "./ui.state";
-import { changepasswordThunk, loginThunk } from "../auth/thunks/auth.thunk";
+import { loginThunk } from "../auth/thunks/auth.thunk";
+import { changepasswordThunk } from "../recovery/thunks/ChangePassword.thunk"
 import { forgotPasswordThunk } from "../recovery/thunks/forgotPassword.thunk";
 import { addThunkLoading } from "./utils/addThunkLoading";
 import { validateCodeThunk } from "../recovery/thunks/validateCode.thunk";
