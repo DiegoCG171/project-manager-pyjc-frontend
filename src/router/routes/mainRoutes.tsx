@@ -1,5 +1,5 @@
 import type { JSX, ReactElement } from "react";
-import { TestPage1 } from "../TestPage1";
+import { MainLayout } from "../../shared/layout/auth/MainLayout"
 
 type JSXComponent = () => JSX.Element;
 
@@ -17,7 +17,7 @@ export const mainRoutes: Route[] = [
   {
     path: "dashboard",
     label: "Dashboard",
-    component: TestPage1,
+    component: MainLayout,
     viewMenu: true
   },
 ];
