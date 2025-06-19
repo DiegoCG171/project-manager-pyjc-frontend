@@ -4,6 +4,7 @@ import { MailOutlined, UserOutlined, DollarOutlined, HomeOutlined, NotificationO
 import LogoSVG from "../../../assets/logo.svg";
 import styles from "../../styles/MainLayout.module.css";
 import { MenuMainLayout } from "../../components/MenuMainLayout";
+import { mainRoutes } from "../../../router/routes/mainRoutes";
 
 const { Sider, Content, Footer } = Layout;
 const { Title, Text } = Typography;
@@ -50,16 +51,18 @@ export const MainLayout = () => {
           selectedKeys={[activeMenu]}
           style={{ marginTop: 8 }}
           onClick={(item) => setActiveMenu(item.key)}
-          items={[
-            { key: '1', icon: <HomeOutlined />, label: 'Dashboards' },
-            { key: '2', icon: <UserOutlined />, label: 'Clientes' },
-            { key: '3', icon: <DollarOutlined />, label: 'Deals' },
-            { key: '4', icon: <MailOutlined />, label: 'Inbox' },
-            { key: '5', icon: <NotificationOutlined />, label: 'Notificaciones' },
-          ]}
+          items={
+            mainRoutes
+              .filter(route => route.viewMenu)
+              .map((route, index) => ({
+                key: `${index + 1}`,
+                icon: route.icon,
+                label: route.label
+              }))
+          }
         />
 
-        {/*Espacio entre el final de notis y el perfil*/}
+          {/*Espacio entre el final de notis y el perfil*/}
         <div style={{ height: 280 }} />
 
         {/*Perfil*/}

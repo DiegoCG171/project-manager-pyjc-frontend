@@ -1,5 +1,6 @@
 import type { JSX, ReactElement } from "react";
 import { MainLayout } from "../../shared/layout/auth/MainLayout"
+import { HomeOutlined, UserOutlined, DollarOutlined } from "@ant-design/icons";
 
 type JSXComponent = () => JSX.Element;
 
@@ -18,6 +19,21 @@ export const mainRoutes: Route[] = [
     path: "dashboard",
     label: "Dashboard",
     component: MainLayout,
-    viewMenu: true
+    viewMenu: true,
+    icon: <HomeOutlined/>
+  },
+  {
+    path: 'clients',
+    label: 'Clientes',
+    component: MainLayout,
+    viewMenu: true,
+    icon: <UserOutlined />,
+  },
+  {
+    path: 'deals',
+    label: 'Deals',
+    component: MainLayout,
+    viewMenu: true,
+    icon: <DollarOutlined />,
   },
 ];
