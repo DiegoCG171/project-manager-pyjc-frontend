@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Layout, Menu, Avatar, Typography, Dropdown } from 'antd';
-import { MailOutlined, UserOutlined, DollarOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
+//import { MailOutlined, UserOutlined, DollarOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
 import LogoSVG from "../../../assets/logo.svg";
+import LogoSVGTitle from "../../../assets/logo_title.svg";
 import styles from "../../styles/MainLayout.module.css";
 import { MenuMainLayout } from "../../components/MenuMainLayout";
 import { mainRoutes } from "../../../router/routes/mainRoutes";
 
 const { Sider, Content, Footer } = Layout;
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,53 +32,59 @@ export const MainLayout = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsed={collapsed} theme="light">
-        {/*Logo y Nombre*/}
-        <div onClick={() => setCollapsed(!collapsed)} className={styles.logoContainer}>
-          <Avatar shape="square" size={48} src={LogoSVG} />
-          {!collapsed && (
-            <Title level={4} style={{ margin: 0 }}>
-              P&JC
-            </Title>
-          )}
-        </div>
+        <div className={styles.siderFlex}>
 
-        {/*Espacio superior de "MENU"*/}
-        <div style={{ height: 16 }} />
 
-        <Text className={styles.menuTitle}>MENU</Text>
+          {/*Logo y Nombre*/}
+          <div onClick={() => setCollapsed(!collapsed)} className={styles.logoContainer}>
 
-        <Menu
-          mode="inline"
-          selectedKeys={[activeMenu]}
-          style={{ marginTop: 8 }}
-          onClick={(item) => setActiveMenu(item.key)}
-          items={
-            mainRoutes
-              .filter(route => route.viewMenu)
-              .map((route, index) => ({
-                key: `${index + 1}`,
-                icon: route.icon,
-                label: route.label
-              }))
-          }
-        />
+            {collapsed && (
+              <Avatar shape="square" size={52} src={LogoSVG} />
+            )}
 
-          {/*Espacio entre el final de notis y el perfil*/}
-        <div style={{ height: 280 }} />
-
-        {/*Perfil*/}
-        <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} trigger={['click']}>
-          <div className={styles.profileContainer}>
-            <Avatar shape="square" size={48} src={"https://i.pravatar.cc/150?img=3"} />
             {!collapsed && (
-              <div>
-                <Typography.Text strong className={styles.userName}>
-                  Aleks Andrew
-                </Typography.Text>
-              </div>
+              <Avatar shape='square' style={{ width: 120, height: 50, }} src={LogoSVGTitle} />
             )}
           </div>
-        </Dropdown>
+
+          {/*Espacio superior de "MENU"*/}
+          <div style={{ height: 16 }} />
+
+          <Text className={styles.menuTitle}>MENU</Text>
+
+          <Menu
+            mode="inline"
+            selectedKeys={[activeMenu]}
+            style={{ marginTop: 8 }}
+            onClick={(item) => setActiveMenu(item.key)}
+            items={
+              mainRoutes
+                .filter(route => route.viewMenu)
+                .map((route, index) => ({
+                  key: `${index + 1}`,
+                  icon: route.icon,
+                  label: route.label
+                }))
+            }
+          />
+
+          {/*Espacio entre el final de notis y el perfil*/}
+          <div style={{ flex: 1 }} />
+
+          {/*Perfil*/}
+          <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} trigger={['click']}>
+            <div className={styles.profileContainer}>
+              <Avatar shape="square" size={48} src={"https://i.pravatar.cc/150?img=3"} />
+              {!collapsed && (
+                <div>
+                  <Typography.Text strong className={styles.userName}>
+                    Aleks Andrew
+                  </Typography.Text>
+                </div>
+              )}
+            </div>
+          </Dropdown>
+        </div>
       </Sider>
 
       <Layout>
