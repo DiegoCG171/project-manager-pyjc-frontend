@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Layout, Menu, Avatar, Typography, Dropdown } from 'antd';
-//import { MailOutlined, UserOutlined, DollarOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
 import LogoSVG from "../../../assets/logo.svg";
 import LogoSVGTitle from "../../../assets/logo_title.svg";
 import styles from "../../styles/MainLayout.module.css";
 import { MenuMainLayout } from "../../components/MenuMainLayout";
 import { mainRoutes } from "../../../router/routes/mainRoutes";
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../../store/store';
+import { getInitials } from '../../utils/getInitial';
 
 const { Sider, Content, Footer } = Layout;
 const { Text } = Typography;
@@ -13,6 +15,8 @@ const { Text } = Typography;
 export const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [activeMenu, setActiveMenu] = useState('1');
+
+  const { full_name } = useSelector((state: RootState) => state.auth.user);
 
   const renderContent = () => {
     switch (activeMenu) {
@@ -24,8 +28,6 @@ export const MainLayout = () => {
         return <h2>Sección 3 deals</h2>;
       case '4':
         return <h2>Sección 4 inbox</h2>;
-      case '5':
-        return <h2>Sección 5 notificaciones</h2>;
     }
   };
 
@@ -34,22 +36,16 @@ export const MainLayout = () => {
       <Sider collapsed={collapsed} theme="light">
         <div className={styles.siderFlex}>
 
-
-          {/*Logo y Nombre*/}
+          {/* Logo y Nombre */}
           <div onClick={() => setCollapsed(!collapsed)} className={styles.logoContainer}>
-
-            {collapsed && (
+            {collapsed ? (
               <Avatar shape="square" size={52} src={LogoSVG} />
-            )}
-
-            {!collapsed && (
-              <Avatar shape='square' style={{ width: 120, height: 50, }} src={LogoSVGTitle} />
+            ) : (
+              <Avatar shape='square' style={{ width: 120, height: 50 }} src={LogoSVGTitle} />
             )}
           </div>
 
-          {/*Espacio superior de "MENU"*/}
           <div style={{ height: 16 }} />
-
           <Text className={styles.menuTitle}>MENU</Text>
 
           <Menu
@@ -57,33 +53,34 @@ export const MainLayout = () => {
             selectedKeys={[activeMenu]}
             style={{ marginTop: 8 }}
             onClick={(item) => setActiveMenu(item.key)}
-            items={
-              mainRoutes
-                .filter(route => route.viewMenu)
-                .map((route, index) => ({
-                  key: `${index + 1}`,
-                  icon: route.icon,
-                  label: route.label
-                }))
+            items={mainRoutes
+              .filter(route => route.viewMenu)
+              .map((route, index) => ({
+                key: `${index + 1}`,
+                icon: route.icon,
+                label: route.label
+              }))
             }
           />
 
-          {/*Espacio entre el final de notis y el perfil*/}
           <div style={{ flex: 1 }} />
 
-          {/*Perfil*/}
-          <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} trigger={['click']}>
+          {/* Perfil */}
+          <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} placement="topLeft" arrow trigger={['click']}>
             <div className={styles.profileContainer}>
-              <Avatar shape="square" size={48} src={"https://i.pravatar.cc/150?img=3"} />
+              <Avatar shape="circle" size={48} style={{backgroundColor: '#d34635', color: '#fefdfd' }}>
+                {getInitials(full_name)}
+              </Avatar>
               {!collapsed && (
                 <div>
                   <Typography.Text strong className={styles.userName}>
-                    Aleks Andrew
+                    {full_name || 'User'}
                   </Typography.Text>
                 </div>
               )}
             </div>
           </Dropdown>
+
         </div>
       </Sider>
 
