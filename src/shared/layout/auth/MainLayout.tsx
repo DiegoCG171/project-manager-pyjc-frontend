@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import type { JSX } from 'react';
 import { Layout, Menu, Avatar, Typography, Dropdown } from 'antd';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LogoSVG from "../../../assets/logo.svg";
 import LogoSVGTitle from "../../../assets/logo_title.svg";
 import styles from "../../styles/MainLayout.module.css";
@@ -12,31 +14,42 @@ import { getInitials } from '../../utils/getInitial';
 const { Sider, Content, Footer } = Layout;
 const { Text } = Typography;
 
-export const MainLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [activeMenu, setActiveMenu] = useState('1');
+interface Props {
+  children?: JSX.Element;
+}
 
+export const MainLayout = ({ children }: Props) => {
+  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const { full_name } = useSelector((state: RootState) => state.auth.user);
 
-  const renderContent = () => {
-    switch (activeMenu) {
-      case '1':
-        return <h2>Dashboard P&JC</h2>;
-      case '2':
-        return <h2>Sección 2 clientes</h2>;
-      case '3':
-        return <h2>Sección 3 deals</h2>;
-      case '4':
-        return <h2>Sección 4 inbox</h2>;
-    }
-  };
+  const renderMenuItems = () =>
+    mainRoutes
+      .filter(route => route.viewMenu)
+      .map((route) => {
+        if (route.children && route.children.length > 0) {
+          return {
+            key: route.path,
+            icon: route.icon,
+            label: route.label,
+            children: route.children.map((child) => ({
+              key: `${route.path}/${child.path}`,
+              label: child.label
+            }))
+          };
+        }
+        return {
+          key: route.path,
+          icon: route.icon,
+          label: route.label
+        };
+      });
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsed={collapsed} theme="light">
         <div className={styles.siderFlex}>
-
-          {/* Logo y Nombre */}
           <div onClick={() => setCollapsed(!collapsed)} className={styles.logoContainer}>
             {collapsed ? (
               <Avatar shape="square" size={52} src={LogoSVG} />
@@ -50,25 +63,19 @@ export const MainLayout = () => {
 
           <Menu
             mode="inline"
-            selectedKeys={[activeMenu]}
+            selectedKeys={[location.pathname.replace(/^\//, '')]}
             style={{ marginTop: 8 }}
-            onClick={(item) => setActiveMenu(item.key)}
-            items={mainRoutes
-              .filter(route => route.viewMenu)
-              .map((route, index) => ({
-                key: `${index + 1}`,
-                icon: route.icon,
-                label: route.label
-              }))
-            }
+            onClick={(item) => {
+              navigate(`/${item.key}`);
+            }}
+            items={renderMenuItems()}
           />
 
           <div style={{ flex: 1 }} />
 
-          {/* Perfil */}
-          <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} placement="topLeft" arrow trigger={['click']}>
+          <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} placement="topRight" arrow trigger={['click']}>
             <div className={styles.profileContainer}>
-              <Avatar shape="circle" size={48} style={{backgroundColor: '#d34635', color: '#fefdfd' }}>
+              <Avatar shape="circle" size={48} style={{ backgroundColor: '#d34635', color: '#fefdfd' }}>
                 {getInitials(full_name)}
               </Avatar>
               {!collapsed && (
@@ -80,13 +87,12 @@ export const MainLayout = () => {
               )}
             </div>
           </Dropdown>
-
         </div>
       </Sider>
 
       <Layout>
         <Content className={styles.content}>
-          {renderContent()}
+          {children}
         </Content>
         <Footer style={{ textAlign: 'center' }}></Footer>
       </Layout>
