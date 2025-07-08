@@ -37,10 +37,8 @@
 }
 
 .profileContainerMenu {
-  padding: 6px;
   display: flex;
-  gap: 8px;
-  background-color: #f6f6f6;
+  align-items: 'center';
 }
 
 .userName {
@@ -60,7 +58,20 @@
   height: 100%;
 }
 
-
 .ant-menu-item:hover {
   background-color: #e6f7ff !important;
+}
+
+.notifications{
+  margin: 0px 4px;
+  cursor: pointer;
+  padding: 9px 24px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.notifications:hover{
+  background-color: #f6f6f6;
 }

@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import type { JSX } from 'react';
-import { Layout, Menu, Avatar, Typography, Dropdown } from 'antd';
+import { Layout, Menu, Avatar, Typography, Popover } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import LogoSVG from "../../../assets/logo.svg";
 import LogoSVGTitle from "../../../assets/logo_title.svg";
 import styles from "../../styles/MainLayout.module.css";
-import { MenuMainLayout } from "../../components/MenuMainLayout";
+import { MenuMainLayout } from "../../components/MenuMainAvatar";
 import { mainRoutes } from "../../../router/routes/mainRoutes";
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../store/store';
 import { getInitials } from '../../utils/getInitial';
+import { NotificactionButton } from '../../components/MenuNotification';
 
 const { Sider, Content, Footer } = Layout;
 const { Text } = Typography;
@@ -20,6 +21,9 @@ interface Props {
 
 export const MainLayout = ({ children }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
+  
+  const [notificationCount] = useState(120);
+  
   const navigate = useNavigate();
   const location = useLocation();
   const { full_name } = useSelector((state: RootState) => state.auth.user);
@@ -71,11 +75,23 @@ export const MainLayout = ({ children }: Props) => {
             items={renderMenuItems()}
           />
 
+          <NotificactionButton notificationCount={notificationCount} />
+
           <div style={{ flex: 1 }} />
 
-          <Dropdown overlay={<MenuMainLayout collapsed={collapsed} />} placement="topRight" arrow trigger={['click']}>
+          <Popover
+            content={<MenuMainLayout collapsed={collapsed} />}
+            placement="rightTop"
+            trigger="click"
+            overlayStyle={{ padding: 0 }}
+            style={{ backgroundColor: '#d34635', margin: 0 }}
+          >
             <div className={styles.profileContainer}>
-              <Avatar shape="circle" size={48} style={{ backgroundColor: '#d34635', color: '#fefdfd' }}>
+              <Avatar
+                shape="circle"
+                size={48}
+                style={{ backgroundColor: '#d34635', color: '#fefdfd' }}
+              >
                 {getInitials(full_name)}
               </Avatar>
               {!collapsed && (
@@ -86,7 +102,7 @@ export const MainLayout = ({ children }: Props) => {
                 </div>
               )}
             </div>
-          </Dropdown>
+          </Popover>
         </div>
       </Sider>
 

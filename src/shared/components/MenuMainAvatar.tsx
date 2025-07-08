@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../store/auth/authSlice';
 
 export const MenuMainLayout = ({ collapsed }: { collapsed: boolean }) => {
-  
+
   const { full_name, email } = useSelector((state: RootState) => state.auth.user);
 
   const dispatch = useDispatch();
@@ -20,22 +20,30 @@ export const MenuMainLayout = ({ collapsed }: { collapsed: boolean }) => {
   return (
     <Menu>
       <Menu.Item key="profile" disabled style={{ cursor: 'default', background: '#f6f6f6' }}>
-        <div className={styles.profileContainerMenu}>
-          <Avatar
-            shape="square"
-            size={40}
-            style={{ border: '1px solid #ccc', backgroundColor: '#d34635', color: '#fefdfd' }}
-            >
-              {getInitials(full_name)}
-          </Avatar>
+        <div >
           {!collapsed && (
-            <div>
-              <Typography.Text strong className={styles.userName}>
-                {full_name || 'Usuario'}
-              </Typography.Text>
-              <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-                {email || 'correo@correo.com'}
-              </Typography.Text>
+            <div className={styles.profileContainerMenu}>
+              <Avatar
+                shape="square"
+                size={40}
+                style={{ backgroundColor: '#d34635', marginRight: 12 }}
+              >
+                {getInitials(full_name)}
+              </Avatar>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Typography.Text
+                  strong
+                  style={{ display: 'block', lineHeight: '16px' }}
+                >
+                  {full_name || 'Usuario'}
+                </Typography.Text>
+                <Typography.Text
+                  type="secondary"
+                  style={{ display: 'block', fontSize: 12, marginTop: '4px', lineHeight: '14px' }}
+                >
+                  {email || 'correo@correo.com'}
+                </Typography.Text>
+              </div>
             </div>
           )}
         </div>

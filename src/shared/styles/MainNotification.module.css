@@ -1,0 +1,22 @@
+.containerNotification {
+  padding: 12px 0;
+  display: flex;
+  gap: 12px;
+  position: relative;
+}
+
+.user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.isRed {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #ca1b2e;
+}
