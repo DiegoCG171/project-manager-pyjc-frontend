@@ -1,5 +1,5 @@
 .containerNotification {
-  padding: 12px 0;
+  padding: 12px 12px;
   display: flex;
   gap: 12px;
   position: relative;
@@ -14,9 +14,41 @@
 .isRed {
   position: absolute;
   top: 18px;
-  right: 0;
+  right: 10px;
   width: 10px;
   height: 10px;
-  border-radius: 20px;
+  border-radius: 50%;
   background-color: #ca1b2e;
 }
+
+.listNotification{
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+  cursor: pointer;
+}
+
+.listNotificationItem:hover{
+  border-radius: 8px;
+  border: 0px;
+  background-color: #f3f2f2;
+}
+
+.noNotification{
+  text-align: center;
+  margin: 40px;
+
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 30px 0px 30px;
+}
+
+.button {
+  border: 1px solid #d9d9d9;
+  padding: 0px 40px;
+}
+

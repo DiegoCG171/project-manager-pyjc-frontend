@@ -1,80 +1,96 @@
-import { Typography, Button, Divider } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import { Typography, Button, Divider, Tabs, Badge } from 'antd';
+import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
 import { MenuNotificationItem } from './MenuNotificationItem';
-
-interface Notification {
-  id: number;
-  user: string;
-  message: string;
-  date: string;
-  type: string;
-  isRead: boolean;
-}
+import style from '../styles/MainNotification.module.css';
+import { useNavigate } from 'react-router-dom';
+import { notifications } from './NotificationData';
 
 interface Props {
   onClose: () => void;
 }
 
 export const MenuMainNotification: React.FC<Props> = ({ onClose }) => {
-  const notifications: Notification[] = [
-    {
-      id: 1,
-      user: 'Erick Trejo',
-      message: 'Nueva tarea asignada',
-      date: '06 Jul 2025 12:45',
-      type: 'UI Design',
-      isRead: false,
-    },
-    {
-      id: 2,
-      user: 'Diego Ceron',
-      message: 'Comentó en tu proyecto',
-      date: '05 Jul 2025 18:10',
-      type: 'Dashboard',
-      isRead: true,
-    },
-    {
-      id: 3,
-      user: 'Brayan Eduardo',
-      message: 'Agregó una nueva actividad',
-      date: '07 Jul 2025 09:25',
-      type: 'Dashboard',
-      isRead: false,
-    }
-  ];
+  const [activeTab, setActiveTab] = useState('1');
+  const navigate = useNavigate();
+
+  const newNotification = notifications.filter((n) => !n.isRead).length;
+
+  const filteredNotifications = notifications.filter((noti) => {
+    if (activeTab === '2') return !noti.isRead;
+    if (activeTab === '3') return noti.isRead;
+    return true;
+  });
+
+  const handleNotificationClick = (id: number) => {
+    navigate(`/notifications/${id}`);
+    onClose();
+  };
 
   return (
-    <div style={{ width: 400, padding: 8 }}>
+    <div style={{ width: 380, padding: 8 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography.Text strong style={{ fontSize: 16 }}>
           Notificaciones
         </Typography.Text>
-        <Button
-          type="text"
-          icon={<CloseOutlined />}
-          onClick={onClose}
-        />
+        <Button type="text" icon={<CloseOutlined />} onClick={onClose} />
       </div>
 
       <Divider style={{ margin: '8px 0' }} />
 
-      <div
-        style={{
-          maxHeight: '400px',
-          overflowY: 'auto',
-          paddingRight: 4,
-        }}
-      >
-        {notifications.map((noti) => (
-          <MenuNotificationItem
-            key={noti.id}
-            user={noti.user}
-            message={noti.message}
-            date={noti.date}
-            type={noti.type}
-            isRead={noti.isRead}
-          />
-        ))}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+        <Tabs
+          activeKey={activeTab}
+          onChange={(key) => setActiveTab(key)}
+          defaultActiveKey="1"
+          size="small"
+          tabBarGutter={14}
+          style={{ flex: 1 }}
+          items={[
+            { key: '1', label: <Typography>Todas</Typography> },
+            { key: '2', label: <Badge count={newNotification} size="small" style={{ marginTop: -3 }}>Nuevas</Badge> },
+            { key: '3', label: <Typography>Leídos</Typography> },
+          ]}
+        />
+        <SettingOutlined style={{ fontSize: 18, marginLeft: 10, cursor: 'pointer' }} />
+      </div>
+
+      {filteredNotifications.length > 0 ? (
+        <div className={style.listNotification}>
+          {filteredNotifications.map((noti) => (
+            <div
+              key={noti.id}
+              className={style.listNotificationItem}
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleNotificationClick(noti.id)}
+            >
+              <MenuNotificationItem
+                user={noti.user}
+                message={
+                  noti.message.length > 70
+                    ? `${noti.message.substring(0, 70)}...`
+                    : noti.message
+                }
+                date={noti.date}
+                type={noti.type}
+                isRead={noti.isRead}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={style.noNotification}>
+          <Typography.Text>No tienes notificaciones</Typography.Text>
+        </div>
+      )}
+
+      <div className={style.buttonContainer}>
+        <Button type="text" className={style.button}>
+          <Typography.Text strong>Archivar todos</Typography.Text>
+        </Button>
+        <Button type="text" className={style.button}>
+          <Typography.Text strong>Marcar como leídos</Typography.Text>
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import { Avatar, Typography, Tag, Divider } from 'antd';
+import { Avatar, Typography, Tag, List, Divider } from 'antd';
 import { getInitials } from '../utils/getInitial';
-import styles from '../styles/MainNotification.module.css'
+import styles from '../styles/MainNotification.module.css';
 
 interface MenuNotificationItemProps {
   user: string;
@@ -20,16 +20,16 @@ export const MenuNotificationItem: React.FC<MenuNotificationItemProps> = ({
 }) => {
   return (
     <>
-      <div className={styles.containerNotification}>
+      <List.Item className={styles.containerNotification}>
         <Avatar
           shape="circle"
-          size={48}
-          style={{ backgroundColor: '#d34635', color: '#fefdfd' }}
+          size={35}
+          style={{ backgroundColor: '#d34635', color: '#fefdfd', fontSize: '12px' }}
         >
           {getInitials(user)}
         </Avatar>
 
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, marginLeft: 10 }}>
           <div className={styles.user}>
             <Typography.Text strong>{user}</Typography.Text>
           </div>
@@ -45,10 +45,8 @@ export const MenuNotificationItem: React.FC<MenuNotificationItemProps> = ({
           </Typography.Text>
         </div>
 
-        {!isRead && (
-          <span className={styles.isRed} />
-        )}
-      </div>
+        {!isRead && <span className={styles.isRed} />}
+      </List.Item>
       <Divider style={{ margin: '0' }} />
     </>
   );

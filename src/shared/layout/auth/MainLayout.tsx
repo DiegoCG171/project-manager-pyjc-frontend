@@ -89,8 +89,8 @@ export const MainLayout = ({ children }: Props) => {
             <div className={styles.profileContainer}>
               <Avatar
                 shape="circle"
-                size={48}
-                style={{ backgroundColor: '#d34635', color: '#fefdfd' }}
+                size={35}
+                style={{ backgroundColor: '#d34635', color: '#fefdfd', fontSize: '12px' }}
               >
                 {getInitials(full_name)}
               </Avatar>

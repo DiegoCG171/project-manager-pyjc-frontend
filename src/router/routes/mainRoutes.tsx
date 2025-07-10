@@ -1,10 +1,11 @@
 import type { JSX, ReactElement } from "react";
 //import { MainLayout } from "../../shared/layout/auth/MainLayout"
-import { HomeOutlined, UserOutlined, DollarOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, DollarOutlined, BellOutlined } from "@ant-design/icons";
 import { DashboardPage } from "../../features/dashboard/pages/DashboardPage"
 import { ClientsPage } from "../../features/dashboard/pages/ClientsPage"
 import { DealsPage } from "../../features/dashboard/pages/DealsPage"
 import { TestPage1 } from "../../features/dashboard/pages/TestPage1"
+import { DetailsNotificationPage } from "../../shared/pages/DetailsNotificationPage";
 
 type JSXComponent = () => JSX.Element;
 
@@ -46,5 +47,12 @@ export const mainRoutes: Route[] = [
     component: TestPage1,
     viewMenu: true,
     icon: <DollarOutlined />,
+  },
+  {
+    path: 'notifications/:id',
+    label: 'DetallesNotificacion',
+    component: DetailsNotificationPage,
+    viewMenu: false,
+    icon: <BellOutlined />,
   },
 ];

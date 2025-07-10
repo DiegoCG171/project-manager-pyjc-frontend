@@ -10,11 +10,9 @@ interface Props {
 
 export const NotificactionButton: React.FC<Props> = ({ notificationCount }) => {
   const [open, setOpen] = useState(false);
-
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
   };
-
   const handleClose = () => {
     setOpen(false);
   };

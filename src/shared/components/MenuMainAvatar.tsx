@@ -25,7 +25,7 @@ export const MenuMainLayout = ({ collapsed }: { collapsed: boolean }) => {
             <div className={styles.profileContainerMenu}>
               <Avatar
                 shape="square"
-                size={40}
+                size={35}
                 style={{ backgroundColor: '#d34635', marginRight: 12 }}
               >
                 {getInitials(full_name)}
