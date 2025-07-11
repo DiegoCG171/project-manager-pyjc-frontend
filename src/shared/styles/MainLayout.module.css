@@ -1,0 +1,66 @@
+.logoContainer {
+  cursor: pointer;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f6f6f6;
+  transition: background-color 0.3s;
+}
+
+.logoContainer:hover {
+  background-color: #e6f7ff;
+}
+
+.menuTitle {
+  padding-left: 16px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 4px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 4px;
+}
+
+.profileContainer {
+  margin-top: auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f6f6f6;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.profileContainer:hover {
+  background-color: #e6f7ff;
+}
+
+.profileContainerMenu {
+  padding: 6px;
+  display: flex;
+  gap: 8px;
+  background-color: #f6f6f6;
+}
+
+.userName {
+  word-break: break-word;
+  max-width: 110px;
+  display: block;
+}
+
+.content {
+  padding: 24px;
+  background: #fafafa;
+}
+
+.siderFlex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.ant-menu-item:hover {
+  background-color: #e6f7ff !important;
+}

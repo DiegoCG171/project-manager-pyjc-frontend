@@ -1,5 +1,10 @@
 import type { JSX, ReactElement } from "react";
-import { TestPage1 } from "../TestPage1";
+//import { MainLayout } from "../../shared/layout/auth/MainLayout"
+import { HomeOutlined, UserOutlined, DollarOutlined } from "@ant-design/icons";
+import { DashboardPage } from "../../features/dashboard/pages/DashboardPage"
+import { ClientsPage } from "../../features/dashboard/pages/ClientsPage"
+import { DealsPage } from "../../features/dashboard/pages/DealsPage"
+import { TestPage1 } from "../../features/dashboard/pages/TestPage1"
 
 type JSXComponent = () => JSX.Element;
 
@@ -17,7 +22,29 @@ export const mainRoutes: Route[] = [
   {
     path: "dashboard",
     label: "Dashboard",
+    component: DashboardPage,
+    viewMenu: true,
+    icon: <HomeOutlined/>
+  },
+  {
+    path: 'clients',
+    label: 'Clientes',
+    component: ClientsPage,
+    viewMenu: true,
+    icon: <UserOutlined />,
+  },
+  {
+    path: 'deals',
+    label: 'Deals',
+    component: DealsPage,
+    viewMenu: true,
+    icon: <DollarOutlined />,
+  },
+  {
+    path: 'test',
+    label: 'Test',
     component: TestPage1,
-    viewMenu: true
+    viewMenu: true,
+    icon: <DollarOutlined />,
   },
 ];

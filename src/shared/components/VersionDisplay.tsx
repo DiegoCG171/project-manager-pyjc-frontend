@@ -7,7 +7,7 @@ export const VersionDisplay = () => {
 
   return (
     <Layout style={{ position: 'fixed', backgroundColor: 'transparent', bottom: 0, left: 0, padding: '8px 32px' }}>
-      <Text style={{ fontSize: '10px', color: '#888' }}>Version {appVersion}</Text>
+      <Text style={{ fontSize: '10px', color: 'transparent' }}>Version {appVersion}</Text>
     </Layout>
   );
 };
