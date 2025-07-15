@@ -1,11 +1,10 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { Typography, Divider, Card, Button, Tag } from 'antd';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { useParams } from 'react-router-dom';
+import { Typography, Divider, Card, Tag } from 'antd';
 import { notifications } from '../components/NotificationData';
+import { BackButton } from '../../../shared/components/BackButton';
 
 export const DetailsNotificationPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const notification = notifications.find((n) => n.id === Number(id));
 
@@ -21,15 +20,7 @@ export const DetailsNotificationPage = () => {
   return (
     <div style={{ width: '100%', padding: 24, background: '#f5f5f5', minHeight: '100vh' }}>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
-        <Button
-          icon={<ArrowLeftOutlined />}
-          type="text"
-          onClick={() => navigate(-1)}
-          //onClick={() => navigate('/dashboard')}
-          style={{ marginRight: 12 }}
-        >
-          Regresar
-        </Button>
+        <BackButton/>
       </div>
 
       <Card

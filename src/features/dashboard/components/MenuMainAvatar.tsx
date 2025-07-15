@@ -1,6 +1,6 @@
 import { Menu, Avatar, Typography } from 'antd';
 import { LogoutOutlined, ShareAltOutlined, HistoryOutlined, TrophyOutlined } from '@ant-design/icons';
-import styles from '../styles/MainLayout.module.css';
+import styles from '../../../shared/styles/MainLayout.module.css'
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../store/store';
 import { getInitials } from '../../../shared/utils/getInitial';

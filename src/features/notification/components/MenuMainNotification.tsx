@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Typography, Button, Divider, Tabs, Badge } from 'antd';
 import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
 import { MenuNotificationItem } from './MenuNotificationItem';
-import style from '../styles/MainNotification.module.css';
+import styles from '../styles/MainNotification.module.css';
 import { useNavigate } from 'react-router-dom';
 import { notifications } from './NotificationData';
 
@@ -56,11 +56,11 @@ export const MenuMainNotification: React.FC<Props> = ({ onClose }) => {
       </div>
 
       {filteredNotifications.length > 0 ? (
-        <div className={style.listNotification}>
+        <div className={styles.listNotification}>
           {filteredNotifications.map((noti) => (
             <div
               key={noti.id}
-              className={style.listNotificationItem}
+              className={styles.listNotificationItem}
               style={{ cursor: 'pointer' }}
               onClick={() => handleNotificationClick(noti.id)}
             >
@@ -79,16 +79,16 @@ export const MenuMainNotification: React.FC<Props> = ({ onClose }) => {
           ))}
         </div>
       ) : (
-        <div className={style.noNotification}>
+        <div className={styles.noNotification}>
           <Typography.Text>No tienes notificaciones</Typography.Text>
         </div>
       )}
 
-      <div className={style.buttonContainer}>
-        <Button type="text" className={style.button}>
+      <div className={styles.buttonContainer}>
+        <Button type="text" className={styles.button}>
           <Typography.Text strong>Archivar todos</Typography.Text>
         </Button>
-        <Button type="text" className={style.button}>
+        <Button type="text" className={styles.button}>
           <Typography.Text strong>Marcar como leídos</Typography.Text>
         </Button>
       </div>

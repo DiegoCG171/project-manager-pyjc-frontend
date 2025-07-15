@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../../../store/store';
 import { getInitials } from '../../utils/getInitial';
 import { NotificactionButton } from '../../../features/notification/components/MenuNotification';
+import { SideNotificationPanel } from '../../../features/notification/components/SideNotificationPanel';
 
 const { Sider, Content, Footer } = Layout;
 const { Text } = Typography;
@@ -21,9 +22,9 @@ interface Props {
 
 export const MainLayout = ({ children }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
-  
+
   const [notificationCount] = useState(120);
-  
+
   const navigate = useNavigate();
   const location = useLocation();
   const { full_name } = useSelector((state: RootState) => state.auth.user);
@@ -107,10 +108,14 @@ export const MainLayout = ({ children }: Props) => {
       </Sider>
 
       <Layout>
+        {location.pathname.startsWith('/notifications') && (
+          <Sider width={360} theme="light">
+            <SideNotificationPanel />
+          </Sider>
+        )}
         <Content className={styles.content}>
           {children}
         </Content>
-        <Footer style={{ textAlign: 'center' }}></Footer>
       </Layout>
     </Layout>
   );

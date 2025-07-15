@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Badge, Popover, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import { MenuMainNotification } from './MenuMainNotification';
-import styles from '../styles/MainLayout.module.css';
+import styles from '../../../shared/styles/MainLayout.module.css';
 
 interface Props {
   notificationCount: number;
