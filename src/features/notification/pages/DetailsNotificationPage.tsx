@@ -24,8 +24,8 @@ export const DetailsNotificationPage = () => {
         <Button
           icon={<ArrowLeftOutlined />}
           type="text"
-          //onClick={() => navigate(-1)}
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate(-1)}
+          //onClick={() => navigate('/dashboard')}
           style={{ marginRight: 12 }}
         >
           Regresar

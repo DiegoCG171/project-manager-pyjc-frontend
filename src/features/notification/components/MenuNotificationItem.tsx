@@ -1,5 +1,5 @@
 import { Avatar, Typography, Tag, List, Divider } from 'antd';
-import { getInitials } from '../utils/getInitial';
+import { getInitials } from '../../../shared/utils/getInitial';
 import styles from '../styles/MainNotification.module.css';
 
 interface MenuNotificationItemProps {

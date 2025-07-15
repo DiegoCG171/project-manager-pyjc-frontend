@@ -5,12 +5,12 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import LogoSVG from "../../../assets/logo.svg";
 import LogoSVGTitle from "../../../assets/logo_title.svg";
 import styles from "../../styles/MainLayout.module.css";
-import { MenuMainLayout } from "../../components/MenuMainAvatar";
+import { MenuMainLayout } from "../../../features/dashboard/components/MenuMainAvatar";
 import { mainRoutes } from "../../../router/routes/mainRoutes";
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../store/store';
 import { getInitials } from '../../utils/getInitial';
-import { NotificactionButton } from '../../components/MenuNotification';
+import { NotificactionButton } from '../../../features/notification/components/MenuNotification';
 
 const { Sider, Content, Footer } = Layout;
 const { Text } = Typography;

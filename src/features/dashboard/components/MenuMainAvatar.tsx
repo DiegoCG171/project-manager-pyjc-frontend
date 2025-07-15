@@ -2,11 +2,11 @@ import { Menu, Avatar, Typography } from 'antd';
 import { LogoutOutlined, ShareAltOutlined, HistoryOutlined, TrophyOutlined } from '@ant-design/icons';
 import styles from '../styles/MainLayout.module.css';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../store/store';
-import { getInitials } from '../utils/getInitial';
+import type { RootState } from '../../../store/store';
+import { getInitials } from '../../../shared/utils/getInitial';
 
 import { useDispatch } from 'react-redux';
-import { logout } from '../../store/auth/authSlice';
+import { logout } from '../../../store/auth/authSlice';
 
 export const MenuMainLayout = ({ collapsed }: { collapsed: boolean }) => {
 

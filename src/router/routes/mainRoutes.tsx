@@ -5,7 +5,7 @@ import { DashboardPage } from "../../features/dashboard/pages/DashboardPage"
 import { ClientsPage } from "../../features/dashboard/pages/ClientsPage"
 import { DealsPage } from "../../features/dashboard/pages/DealsPage"
 import { TestPage1 } from "../../features/dashboard/pages/TestPage1"
-import { DetailsNotificationPage } from "../../shared/pages/DetailsNotificationPage";
+import { DetailsNotificationPage } from "../../features/notification/pages/DetailsNotificationPage";
 
 type JSXComponent = () => JSX.Element;
 
