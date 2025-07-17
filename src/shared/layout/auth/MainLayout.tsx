@@ -13,7 +13,7 @@ import { getInitials } from '../../utils/getInitial';
 import { NotificactionButton } from '../../../features/notification/components/MenuNotification';
 import { SideNotificationPanel } from '../../../features/notification/components/SideNotificationPanel';
 
-const { Sider, Content, Footer } = Layout;
+const { Sider, Content } = Layout;
 const { Text } = Typography;
 
 interface Props {

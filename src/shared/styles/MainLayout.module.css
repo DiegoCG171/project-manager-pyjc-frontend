@@ -48,14 +48,14 @@
 }
 
 .content {
-  padding: 24px;
+  padding: 10px;
   background: #fafafa;
 }
 
 .siderFlex {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 .ant-menu-item:hover {

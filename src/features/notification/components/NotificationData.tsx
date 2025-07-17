@@ -1,6 +1,5 @@
 export const notifications = [
   { id: 1, user: 'Erick Trejo', message: 'Nueva tarea asignada por el equipo de diseño para revisión detallada antes de la entrega final', date: '06 Jul 2025 12:45', type: 'UI Design', isRead: false },
-  /*
   { id: 2, user: 'Diego Ceron', message: 'Comentó en tu proyecto acerca del componente gráfico de la sección de estadísticas y su implementación responsiva', date: '05 Jul 2025 18:10', type: 'Dashboard', isRead: true },
   { id: 3, user: 'Brayan Eduardo', message: 'Agregó una nueva actividad relacionada con el módulo de autenticación y validación de acceso seguro', date: '07 Jul 2025 09:25', type: 'Dashboard', isRead: false },
   { id: 4, user: 'María López', message: 'Solicitó revisión del diseño de la interfaz principal y ajustes en la tipografía para mejorar la accesibilidad', date: '08 Jul 2025 10:20', type: 'UI Design', isRead: false },
@@ -15,5 +14,6 @@ export const notifications = [
   { id: 13, user: 'Jonathan Castro', message: 'Reagendó la reunión semanal para discutir la nueva hoja de ruta del proyecto y sus prioridades en la próxima fase', date: '10 Jul 2025 15:00', type: 'Meetings', isRead: true },
   { id: 14, user: 'Patricia Mejía', message: 'Solicitó cambios en UI que incluyan animaciones suaves en los componentes interactivos para mejorar la experiencia del usuario', date: '10 Jul 2025 15:45', type: 'UI Design', isRead: false },
   { id: 15, user: 'Roberto Ortega', message: 'Archivó comentarios antiguos relacionados con versiones anteriores del dashboard y su documentación técnica obsoleta', date: '10 Jul 2025 16:10', type: 'Dashboard', isRead: true },
+  /*
 */
 ];

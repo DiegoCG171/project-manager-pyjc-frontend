@@ -18,19 +18,18 @@ export const DetailsNotificationPage = () => {
 
 
   return (
-    <div style={{ width: '100%', padding: 24, background: '#f5f5f5', minHeight: '100vh' }}>
+    <div style={{ width: '100%', padding: 10, background: '#f5f5f5', minHeight: '100vh' }}>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
         <BackButton/>
       </div>
 
       <Card
         style={{
-          maxWidth: 700,
+          maxWidth: '100vh',
           margin: '0 auto',
           borderRadius: 12,
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         }}
-        bodyStyle={{ padding: 24 }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
           <Typography.Text strong style={{ fontSize: 16 }}>
@@ -42,7 +41,7 @@ export const DetailsNotificationPage = () => {
         <Divider />
 
         <Typography.Paragraph
-          style={{ fontSize: 18, lineHeight: 1.6, marginBottom: 20 }}
+          style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 20 }}
         >
           {notification.message}
         </Typography.Paragraph>
