@@ -27,7 +27,7 @@ export const MainLayout = ({ children }: Props) => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { full_name } = useSelector((state: RootState) => state.auth.user);
+  const { full_name, email } = useSelector((state: RootState) => state.auth.user);
 
   const renderMenuItems = () =>
     mainRoutes
@@ -76,7 +76,7 @@ export const MainLayout = ({ children }: Props) => {
             items={renderMenuItems()}
           />
 
-          <NotificactionButton notificationCount={notificationCount} />
+          <NotificactionButton notificationCount={notificationCount} collapsed={collapsed} />
 
           <div style={{ flex: 1 }} />
 
@@ -99,6 +99,9 @@ export const MainLayout = ({ children }: Props) => {
                 <div>
                   <Typography.Text strong className={styles.userName}>
                     {full_name || 'User'}
+                  </Typography.Text>
+                  <Typography.Text type='secondary' className={styles.email}>
+                    {email || 'User'}
                   </Typography.Text>
                 </div>
               )}

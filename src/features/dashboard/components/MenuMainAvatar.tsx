@@ -24,9 +24,9 @@ export const MenuMainLayout = ({ collapsed }: { collapsed: boolean }) => {
           {!collapsed && (
             <div className={styles.profileContainerMenu}>
               <Avatar
-                shape="square"
+                shape="circle"
                 size={35}
-                style={{ backgroundColor: '#d34635', marginRight: 12 }}
+                style={{ backgroundColor: '#d34635', marginRight: 10, color: '#fefdfd', fontSize: '12px' }}
               >
                 {getInitials(full_name)}
               </Avatar>
@@ -39,7 +39,7 @@ export const MenuMainLayout = ({ collapsed }: { collapsed: boolean }) => {
                 </Typography.Text>
                 <Typography.Text
                   type="secondary"
-                  style={{ display: 'block', fontSize: 12, marginTop: '4px', lineHeight: '14px' }}
+                  style={{ display: 'block', fontSize: 10, marginTop: '4px', lineHeight: '14px' }}
                 >
                   {email || 'correo@correo.com'}
                 </Typography.Text>

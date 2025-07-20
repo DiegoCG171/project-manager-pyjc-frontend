@@ -3,7 +3,7 @@ import { authSlice } from "./auth/authSlice";
 import { uiSlice } from "./ui/uiSlice";
 import { recoveryPasswordSlice } from "./recovery/recoveryPasswordSlice";
 import { notificationSlice } from "./nofication/notificationSlice";
-
+import notificationPanelSlice from "./notifications/notificationPanelSlice";
 
 
 export const store = configureStore({
@@ -12,6 +12,7 @@ export const store = configureStore({
         ui: uiSlice.reducer,
         notification: notificationSlice.reducer,
         recovery: recoveryPasswordSlice.reducer,
+        notificationPanel: notificationPanelSlice,
     }
 });
 

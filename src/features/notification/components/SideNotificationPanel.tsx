@@ -1,15 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Typography, Button, Divider, Tabs, Badge } from 'antd';
-//import { SettingOutlined } from '@ant-design/icons';
-import { SideNotificationItem } from './SideNotificationItem';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { notifications } from './NotificationData';
-import styles from '../styles/MainNotification.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../../store/store';
+import { setNotifications, markAllAsRead, archiveAll } from '../../../store/notifications/notificationPanelSlice';
+import { notifications as mockNotifications } from './NotificationData';
+import { SideNotificationItem } from './SideNotificationItem';
+import styles from '../styles/MainNotification.module.css';
 
 export const SideNotificationPanel: React.FC = () => {
   const [activeTab, setActiveTab] = useState('1');
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const notifications = useSelector(
+    (state: RootState) => state.notificationPanel.notifications
+  );
+
+  useEffect(() => {
+    if (notifications.length === 0) {
+      dispatch(setNotifications(mockNotifications));
+    }
+  }, [dispatch, notifications.length]);
 
   const newNotification = notifications.filter((n) => !n.isRead).length;
 
@@ -26,24 +39,38 @@ export const SideNotificationPanel: React.FC = () => {
   };
 
   return (
-    <div style={{
-      width: '100%',
-      height: '100vh',
-      padding: '16px',
-      backgroundColor: '#ffffff',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
-      
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        padding: '16px',
+        backgroundColor: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Tabs
         activeKey={activeTab}
         onChange={(key) => setActiveTab(key)}
         size="small"
         tabBarGutter={10}
         items={[
-          { key: '1', label: <Typography style={{ fontSize: 14 }}>Todas</Typography> },
-          { key: '2', label: <Badge count={newNotification} size="small" style={{ marginTop: -3 }}>Nuevas</Badge> },
-          { key: '3', label: <Typography style={{ fontSize: 14 }}>Leídos</Typography> },
+          {
+            key: '1',
+            label: <Typography style={{ fontSize: 14 }}>Todas</Typography>,
+          },
+          {
+            key: '2',
+            label: (
+              <Badge count={newNotification} size="small" style={{ marginTop: -3 }}>
+                Nuevas
+              </Badge>
+            ),
+          },
+          {
+            key: '3',
+            label: <Typography style={{ fontSize: 14 }}>Leídos</Typography>,
+          },
         ]}
         tabBarStyle={{ marginBottom: 12 }}
       />
@@ -79,6 +106,7 @@ export const SideNotificationPanel: React.FC = () => {
                 date={noti.date}
                 type={noti.type}
                 isRead={noti.isRead}
+                avatarUrl={noti.avatarUrl}
               />
             </div>
           ))
@@ -92,10 +120,18 @@ export const SideNotificationPanel: React.FC = () => {
       <Divider style={{ margin: '4px 0' }} />
 
       <div className={styles.buttonContainer}>
-        <Button type="text" style={{border: '1px solid #d9d9d9', padding: '0px 10px'}}>
+        <Button
+          type="text"
+          style={{ border: '1px solid #d9d9d9', padding: '0px 10px' }}
+          onClick={() => dispatch(archiveAll())}
+        >
           <Typography.Text strong>Archivar todos</Typography.Text>
         </Button>
-        <Button type="text" style={{border: '1px solid #d9d9d9', padding: '0px 10px'}}>
+        <Button
+          type="text"
+          style={{ border: '1px solid #d9d9d9', padding: '0px 10px' }}
+          onClick={() => dispatch(markAllAsRead())}
+        >
           <Typography.Text strong>Marcar como leídos</Typography.Text>
         </Button>
       </div>

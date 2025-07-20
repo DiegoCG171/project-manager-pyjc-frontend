@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Typography, Button, Divider, Tabs, Badge } from 'antd';
 import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
 import { MenuNotificationItem } from './MenuNotificationItem';
 import styles from '../styles/MainNotification.module.css';
 import { useNavigate } from 'react-router-dom';
-import { notifications } from './NotificationData';
+
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../../store/store';
+import {
+  setNotifications,
+  markAllAsRead,
+  archiveAll,
+} from '../../../store/notifications/notificationPanelSlice';
+
+import { notifications as mockNotifications } from './NotificationData';
 
 interface Props {
   onClose: () => void;
@@ -13,6 +22,17 @@ interface Props {
 export const MenuMainNotification: React.FC<Props> = ({ onClose }) => {
   const [activeTab, setActiveTab] = useState('1');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const notifications = useSelector(
+    (state: RootState) => state.notificationPanel.notifications
+  );
+
+  useEffect(() => {
+    if (notifications.length === 0) {
+      dispatch(setNotifications(mockNotifications));
+    }
+  }, [dispatch, notifications.length]);
 
   const newNotification = notifications.filter((n) => !n.isRead).length;
 
@@ -48,7 +68,14 @@ export const MenuMainNotification: React.FC<Props> = ({ onClose }) => {
           style={{ flex: 1 }}
           items={[
             { key: '1', label: <Typography>Todas</Typography> },
-            { key: '2', label: <Badge count={newNotification} size="small" style={{ marginTop: -3 }}>Nuevas</Badge> },
+            {
+              key: '2',
+              label: (
+                <Badge count={newNotification} size="small" style={{ marginTop: -3 }}>
+                  Nuevas
+                </Badge>
+              ),
+            },
             { key: '3', label: <Typography>Leídos</Typography> },
           ]}
         />
@@ -85,10 +112,10 @@ export const MenuMainNotification: React.FC<Props> = ({ onClose }) => {
       )}
 
       <div className={styles.buttonContainer}>
-        <Button type="text" className={styles.button}>
+        <Button type="text" className={styles.button} onClick={() => dispatch(archiveAll())}>
           <Typography.Text strong>Archivar todos</Typography.Text>
         </Button>
-        <Button type="text" className={styles.button}>
+        <Button type="text" className={styles.button} onClick={() => dispatch(markAllAsRead())}>
           <Typography.Text strong>Marcar como leídos</Typography.Text>
         </Button>
       </div>

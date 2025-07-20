@@ -46,6 +46,12 @@
   max-width: 110px;
   display: block;
 }
+.email{
+  word-break: break-word;
+  max-width: 110px;
+  display: block;
+  font-size: 10px;
+}
 
 .content {
   padding: 10px;
