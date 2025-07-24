@@ -1,0 +1,13 @@
+.cardStyle{
+  width: 170px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.contentStyle{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px,
+}
