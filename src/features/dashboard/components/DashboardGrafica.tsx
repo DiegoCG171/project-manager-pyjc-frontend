@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Pie } from "@ant-design/plots";
-import { Button, Space, Typography } from "antd";
+import { Typography } from "antd";
 
 const { Text } = Typography;
 
@@ -25,30 +24,27 @@ const pieConfig = {
   tooltip: false,
 };
 
-export const DashboardProyectoSemaforo = () => {
+export const DashboardGrafica = () => {
   return (
-    <div style={{ display: "flex", gap: 24, padding: 24, marginTop: 50 }}>
-      <div style={{ flex: 1, maxWidth: 350 }}>
-        <div style={{ marginBottom: 16 }}>
-          <b>PROYECTOS POR SEMÁFORO - JULIO</b>
-        </div>
-        <Pie {...pieConfig} />
-      </div>
-
-      <div style={{ flex: 2 }}>
+    <div>
+      <div>
         <div
           style={{
+            margin: "90px 16px 10px",
             display: "flex",
             justifyContent: "space-between",
           }}
         >
-          <Text>PROYECTOS TOTALES: 3</Text>
-          <Space>
-            <Button>LIMPIAR FILTROS</Button>
-            <Button>EXPORTAR</Button>
-          </Space>
+          <Text strong>PROYECTOS POR SEMÁFORO - JULIO</Text>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ width: "100%", maxWidth: 400 }}>
+            <Pie {...pieConfig} />
+          </div>
         </div>
       </div>
     </div>
   );
+
 };

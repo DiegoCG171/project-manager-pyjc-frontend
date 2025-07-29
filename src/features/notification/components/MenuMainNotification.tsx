@@ -13,7 +13,7 @@ import {
   archiveAll,
 } from '../../../store/notifications/notificationPanelSlice';
 
-import { notifications as mockNotifications } from './NotificationData';
+import { notifications as mockNotifications } from '../data/NotificationData';
 
 interface Props {
   onClose: () => void;

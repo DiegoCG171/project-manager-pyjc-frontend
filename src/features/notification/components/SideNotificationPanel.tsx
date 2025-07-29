@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../../store/store';
 import { setNotifications, markAllAsRead, archiveAll } from '../../../store/notifications/notificationPanelSlice';
-import { notifications as mockNotifications } from './NotificationData';
+import { notifications as mockNotifications } from '../data/NotificationData';
 import { SideNotificationItem } from './SideNotificationItem';
 import styles from '../styles/MainNotification.module.css';
 
