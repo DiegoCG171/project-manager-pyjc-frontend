@@ -3,25 +3,25 @@ export const table = [
   clave: "D-45-2290-25",
   nombre: "Finconnect - Integración API V2.5",
   semaforo: "Amarillo",
-  estatus: "En desarrollo",
+  estatus: "Stand by",
   exitoso: "En proceso",
-  avance: "35%",
+  avance: "35",
   lider: "Julio Vargas",
   pm: "Mónica Herrera",
   fechaInicio: "5 de ago. de 2025",
   fechaFin: "30 de ago. de 2025",
   orden: "OC-7812",
-  pagado: "Parcialmente pagado",
+  pagado: "Pagado",
   horas: 60,
-  consumidas: "21%"
+  consumidas: 21
 },
 {
   clave: "R-10-9980-25",
   nombre: "PagosNet - Soporte para Apple Pay",
   semaforo: "Rojo",
-  estatus: "Retrasado",
-  exitoso: "Pendiente",
-  avance: "12%",
+  estatus: "Terminado",
+  exitoso: "En proceso",
+  avance: "12",
   lider: "Ricardo Ortega",
   pm: "Laura Chávez",
   fechaInicio: "1 de jul. de 2025",
@@ -29,15 +29,15 @@ export const table = [
   orden: "OC-1052",
   pagado: "No pagado",
   horas: 95,
-  consumidas: "8%"
+  consumidas: 8
 },
 {
   clave: "X-30-7652-25",
   nombre: "Binex - Actualización reglas de negocio",
-  semaforo: "Verde",
-  estatus: "Finalizado",
-  exitoso: "Sí",
-  avance: "100%",
+  semaforo: "Azul",
+  estatus: "Cancelado",
+  exitoso: "En proceso",
+  avance: "100",
   lider: "Fernando Aguilar",
   pm: "Camila Robles",
   fechaInicio: "1 de jun. de 2025",
@@ -45,15 +45,15 @@ export const table = [
   orden: "OC-2209",
   pagado: "Pagado",
   horas: 42,
-  consumidas: "100%"
+  consumidas: 100
 },
 {
   clave: "L-88-5210-25",
   nombre: "Civipay - Migración a cloud",
-  semaforo: "Naranja",
-  estatus: "En pruebas",
-  exitoso: "Validación",
-  avance: "70%",
+  semaforo: "Morado",
+  estatus: "Activo",
+  exitoso: "En proceso",
+  avance: "70",
   lider: "Luis Ramírez",
   pm: "Ariana Torres",
   fechaInicio: "10 de ago. de 2025",
@@ -61,15 +61,15 @@ export const table = [
   orden: "OC-3399",
   pagado: "No pagado",
   horas: 120,
-  consumidas: "85%"
+  consumidas: 85
 },
 {
   clave: "M-77-2301-25",
   nombre: "CreditMex - Módulo de autenticación",
   semaforo: "Verde",
-  estatus: "Por empezar",
+  estatus: "Cancelado",
   exitoso: "En proceso",
-  avance: "0%",
+  avance: "0",
   lider: "Mauricio León",
   pm: "Erika Salinas",
   fechaInicio: "15 de ago. de 2025",
@@ -77,7 +77,6 @@ export const table = [
   orden: ".",
   pagado: "No pagado",
   horas: 40,
-  consumidas: "0%"
-}
-
+  consumidas: 0
+},
 ];

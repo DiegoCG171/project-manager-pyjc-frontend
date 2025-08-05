@@ -26,7 +26,7 @@ const pieConfig = {
 
 export const DashboardGrafica = () => {
   return (
-    <div>
+    <div style={{ width: "50%"}}>
       <div>
         <div
           style={{
