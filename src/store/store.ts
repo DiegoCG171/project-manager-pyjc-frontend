@@ -4,7 +4,7 @@ import { uiSlice } from "./ui/uiSlice";
 import { recoveryPasswordSlice } from "./recovery/recoveryPasswordSlice";
 import { notificationSlice } from "./nofication/notificationSlice";
 import notificationPanelSlice from "./notifications/notificationPanelSlice";
-
+import areasReducer from "./areasDashboard/areasSlice"
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +13,7 @@ export const store = configureStore({
         notification: notificationSlice.reducer,
         recovery: recoveryPasswordSlice.reducer,
         notificationPanel: notificationPanelSlice,
+        areas: areasReducer,
     }
 });
 

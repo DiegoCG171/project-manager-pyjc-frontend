@@ -24,9 +24,9 @@ const pieConfig = {
   tooltip: false,
 };
 
-export const DashboardGrafica = () => {
+export const DashboardGrafica = ({ fullWidth }: { fullWidth?: boolean }) => {
   return (
-    <div style={{ width: "50%"}}>
+    <div style={{ width: fullWidth ? "100%" : "50%" }}>
       <div>
         <div
           style={{

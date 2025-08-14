@@ -4,15 +4,9 @@ import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
 import { MenuNotificationItem } from './MenuNotificationItem';
 import styles from '../styles/MainNotification.module.css';
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../../store/store';
-import {
-  setNotifications,
-  markAllAsRead,
-  archiveAll,
-} from '../../../store/notifications/notificationPanelSlice';
-
+import { setNotifications, markAllAsRead, archiveAll } from '../../../store/notifications/notificationPanelSlice';
 import { notifications as mockNotifications } from '../data/NotificationData';
 
 interface Props {

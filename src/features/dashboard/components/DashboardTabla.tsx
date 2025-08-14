@@ -5,7 +5,7 @@ import { SearchOutlined, FileExcelOutlined } from "@ant-design/icons";
 import type { ColumnsType, FilterDropdownProps } from "antd/es/table/interface";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { useRef, useState } from "react";
+import { useState, useRef } from "react";
 
 const { Text } = Typography;
 
@@ -250,21 +250,21 @@ const columns: ColumnsType<Tabla> = [
   },
 ];
 
-export const DashboardTabla = () => {
+export const DashboardTabla = ({ fullWidth }: { fullWidth?: boolean }) => {
   const [filteredData, setFilteredData] = useState(mockTable);
-  //const tableRef = useRef<any>(null);
+  const tableRef = useRef<any>(null);
 
   const handleChange = (_pagination: any, _filters: any, _sorter: any, extra: any) => {
     setFilteredData(extra.currentDataSource);
   };
 
-  /*const limpiarFiltros = () => {
+  const limpiarFiltros = () => {
     if (tableRef.current) {
       tableRef.current.reset(); 
     }
     setFilteredData(mockTable); 
-    window.location.reload(); 
-  };*/
+    //window.location.reload(); 
+  };
 
   const exportarExcel = () => {
     const worksheetData = [
@@ -348,18 +348,22 @@ export const DashboardTabla = () => {
     saveAs(data, "Reporte_Proyectos.xlsx");
   };
 
-
   return (
-    <div style={{ width: "60%", overflowX: "auto" }}>
+    <div style={{ width: fullWidth ? "100%" : "60%", overflowX: "auto" }}>
       <div
         style={{
-          margin: "90px 16px 20px",
+          margin: fullWidth ? "20px 16px 10px" : "90px 16px 20px",
           display: "flex",
           justifyContent: "space-between",
+          flexDirection: fullWidth ? "column" : "row",
+          gap: fullWidth ? "10px" : 0,
+          flexWrap: "wrap",
         }}
       >
-        <Text strong>PROYECTOS TOTALES: {proyectosTotales}</Text>
-        <Space>
+        <Text strong style={{ whiteSpace: "normal" }}>
+          PROYECTOS TOTALES: {proyectosTotales}
+        </Text>
+        <Space style={{ flexWrap: "wrap" }}>
           <Button>LIMPIAR FILTROS</Button>
           <Button onClick={exportarExcel} icon={<FileExcelOutlined />}>
             EXPORTAR
